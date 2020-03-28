@@ -18,6 +18,12 @@ class User(db.Model):
     email = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     uzipcode = db.Column(db.String(15), nullable=True)
+    is_asker= db.Column(db.Boolean(), nullable= True)
+    is_vol= db.Column(db.Boolean(), nullable= True)
+    trust_score= db.Column(db.String(15), nullable=True)
+    trip = db.relationship("Trip",
+                           backref=db.backref("relations", 
+                           order_by=user_id))
 
 
     def __repr__(self):
@@ -25,50 +31,48 @@ class User(db.Model):
 
         return f"<User user_id={self.user_id} zipcode={self.zipcode}>"
 
-class Volunteer(db.Model):
-    """Volunteers"""
+class Relational(db.Model):
 
-    __tablename__ = "volunteers"
+    __tablename__= "relations"
 
-    volunteer_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    volunteer_full_name= db.Column(db.String(64))
-    email = db.Column(db.String(64))
-    password = db.Column(db.String(64))
-    vzipcode = db.Column(db.String(15))
-    trip_id = db.Column(db.Integer)
-    trust_score= db.Column(db.String(15), nullable=True)
+    relation_id= db.Column(db.Integer, autoincrement=True, primary_key=True)
+    r_asker_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
+    r_vol_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
+    r_trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'), index=True)
 
-    def __repr__(self):
-        """Provide helpful representation when printed."""
+    #relationships with the user table
+    r_asker_id_rel = db.relationship('User', 
+                                    foreign_keys="[User.user_id]", 
+                                    backref='relational_asker')
 
-        return f"<Volunteer Name={self.volunteer_full_name} zipcode={self.vzipcode}>"
+    r_vol_id_rel = db.relationship('User', 
+                                    foreign_keys="[User.user_id]", 
+                                    backref='relational_volunteer')
 
-
-class Item(db.Model):
+class Trip(db.Model):
     """Items that a user requests"""
 
-    __tablename__ = "items"
+    __tablename__ = "trips"
 
-
-    trip_id= db.Column(db.Integer, autoincrement=True, nullable=True, primary_key=True)
-    item_id = db.Column(db.Integer)
+    trip_id= db.Column(db.Integer, autoincrement=True, primary_key=True)
     trip_zipcode= db.Column(db.String(15))
     user_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
-    volunteer_id= db.Column(db.Integer, db.ForeignKey('volunteers.volunteer_id'), nullable=True)
-    item_description = db.Column(db.String(200))
+    wishlist = db.Column(db.Text(), nullable=True)
     item_progress= db.Column(db.String(15))
 
     # Define relationship to user
-    user = db.relationship("User",
-                           backref=db.backref("users", order_by=user_id))
-
-    # Define relationship to volunteer
-    volunteer = db.relationship("Volunteer",
-                            backref=db.backref("volunteers", order_by=volunteer_id))
+    user = db.relationship("Relational",
+                           backref=db.backref("relations", 
+                            order_by=user_id))
 
 
+class Wishlist(db.Model):
+    """Items that a user requests"""
 
+    __tablename__ = "wishlist"
 
+    wish_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    # wish_item_desc= db.Column(db.)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
