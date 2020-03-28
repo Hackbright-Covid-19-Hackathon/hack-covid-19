@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://unpkg.com/babel-standalone@6.26.0/babel.js"
+      crossorigin></script>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.js"
+      crossorigin></script>
+</head>
+<body>
+    <div id="wishlist"></div>
+
+
+    <script type="text/jsx" src="hack-covid-19/templates/js/Wishlist.jsx"></script>
+
+</body>
+
+{% endblock %}
+</html>
