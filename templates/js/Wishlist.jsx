@@ -6,13 +6,13 @@ class Wishlist extends React.Component {
 
           }
     }
-    componentDidMount() {
-        $.get('/api/wishlist', (wishlist) => {
-            this.setState({ wishlist: wishlist,
-                            completed: completed
-            });
-          });
-    }
+    // componentDidMount() {
+    //     $.get('/api/wishlist', (wishlist) => {
+    //         this.setState({ wishlist: wishlist,
+    //                         completed: completed
+    //         });
+    //       });
+    // }
 
     render() { 
         // if this.state.wishlist, display wishlist
