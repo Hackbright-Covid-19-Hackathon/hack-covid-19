@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-{% extends 'base.html' %}
-{% block content %}
 
 <head>
     <script
@@ -21,13 +19,14 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.js"
       crossorigin></script>
 </head>
+
 <body>
-    <div id="wishlist"></div>
+    <div id="wishlist">
+    </div>
 
 
-    <script type="text/jsx" src="hack-covid-19/templates/js/Wishlist.jsx"></script>
+    <script type="text/jsx" src="/js/Wishlist.jsx"></script>
 
 </body>
 
-{% endblock %}
 </html>

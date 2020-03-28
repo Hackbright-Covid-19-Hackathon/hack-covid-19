@@ -45,7 +45,7 @@ class Wishlist extends React.Component {
         return ( 
             <div>
                 {display}
-                <p>hiii</p>
+                <p>JSX!</p>
             </div>
          );
     }
