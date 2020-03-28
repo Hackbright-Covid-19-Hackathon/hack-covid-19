@@ -87,6 +87,7 @@ def register_user():
         phone = None
     username = request.form.get("username")
     password = request.form.get("password")
+    user_type = session["user_type"]
     if not User.query.filter_by(username=username).all():
         new_user = User(fname=fname, lname=lname, phone=phone, username=username)
         # This is a method Amber set in her model.py to hash passwords
