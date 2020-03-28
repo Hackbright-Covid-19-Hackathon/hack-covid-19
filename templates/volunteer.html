@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/styles.css"/>
+
+{% if session.logged_in %}
+    <h2>{{session.user_full_name}}'s Dashboard</h2>
+
+    <br>
+    <div>
+        <h2>Active Orders: </h2>
+        <br>
+        <script>
+            $.get('/wishlist.json'), data, (res) => {
+                for (const wishlist of wishlists) {
+                    const activeOrders = (`
+                    <div class="wishlist-progress">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order #:</th>
+                                    <th scope="col">Status:</th>
+                            </)
+                }
+            }
+        </script>
+    </div>
+{% endif %}
+
