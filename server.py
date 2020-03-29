@@ -26,6 +26,12 @@ def homepage():
 
     return render_template("index.html")
 
+@app.route("/user")
+def user_page():
+    """Show the userpage."""
+
+    return render_template("user.html")
+
 
 @app.route("/login", methods=["POST"])
 def login_page():
