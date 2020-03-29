@@ -10,9 +10,10 @@ Volunteer Page Route Plan
                       -mark order completed
 """      
 
-@app.route("/volunteer-signup")
+
+@app.route("/volunteer-homepage")
 def show_volunteer_signup():
-    """Show form for volunteer to enter zipcode"""
+    """Show homepage for volunteer."""
 
     # Page should have volunteer enter their zipcode
     zipcode = request.args("zipcode_input")
@@ -46,13 +47,17 @@ def display_user_wishlist():
 
 
 #Yichen's template
-@app.route("/inprogress", methods=["POST"])
+
+@app.route("/inprogress", methods=["POST"]) ## Make AJAX Request?
+
 def volunteer_confirm_task():
     """Sends in progress status to database"""
     # includes a button to change status to "in progress"
 
 
-@app.route("/inprogress") ## Make AJAX Request?
+
+@app.route("/inprogress")
+
 def status_in_progress():
     """Routes to in progress page"""
 
@@ -60,7 +65,8 @@ def status_in_progress():
     return render_template("asker-wishlist-inprogress.html")
 
 
-@app.route("/completed", methods=["POST"])
+
+@app.route("/completed", methods=["POST"]) ## Make AJAX Request?
 def grocery_delivered():
     """Sends completed wishlist status to database"""
 
@@ -75,6 +81,15 @@ def status_complete():
     return render_template("asker-wishlist-completed.html")
 
 
+
+
+if __name__ == "__main__":
+
+  from server import app
+  
+  connect_to_db(app)
+  
+  print("Connected to DB.")
 
 
 
