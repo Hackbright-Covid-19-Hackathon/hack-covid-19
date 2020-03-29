@@ -3,8 +3,8 @@
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
-from model import connect_to_db, db, User, Trip
-# from queryuser import add_wishlist, get_wishlist, update_status
+from model import connect_to_db, db, User, Trip, wishlist
+from queryuser import add_wishlist, get_wishlist, update_status
 
 
 
@@ -135,6 +135,7 @@ def create_wishlist():
 
     return redirect("asker-homepage")
 
+
 @app.route("/incomplete")
 def view_wishlist():
     """Display wishlist."""
@@ -149,6 +150,8 @@ def view_wishlist():
 @app.route("/volunteer-homepage")
 def show_volunteer_homepage():
     """Show homepage for volunteer."""
+
+
     
     return render_template("volunteer.html")
 
