@@ -85,12 +85,14 @@ def add_users():
                 user = User(
                         user_full_name = row[1],
                         email = row[2],
-                        password = row[3],
+                        # password_hash = row[3],
                         uzipcode = row[4],
                         is_asker= asker_seed,
                         is_vol= vol_seed,
                         trust_score = row[7]
                         )
+
+                user.set_password(row[3])
 
                 db.session.add(user)
                 line_count += 1
