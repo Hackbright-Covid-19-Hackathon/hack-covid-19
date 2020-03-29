@@ -12,13 +12,6 @@ app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
 
 
-# def check_logged_in():
-#     if session.get("user_id") == None:
-#         flash("You're not currently logged in!")
-#         return redirect("/login")
-
-
-
 @app.route("/")
 def homepage():
     """Show the homepage."""
@@ -71,7 +64,7 @@ def register_user():
     password = request.form.get("password")
     zipcode = request.form.get("zipcode")
     
-    if not User.query.filter_by(username=username).all():
+    if not User.query.filter_by(user_full_name=username).all():
         new_user = User(email=email, 
                         user_full_name=username, 
                         uzipcode=zipcode)
