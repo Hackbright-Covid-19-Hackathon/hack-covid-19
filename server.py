@@ -1,9 +1,9 @@
 """Covid19 Hackathon"""
 
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
-from model import connect_to_db, db, User
+from model import connect_to_db, db, User, Trip
 # from queryuser import add_wishlist, get_wishlist, update_status
 
 
@@ -166,7 +166,7 @@ def trip_info():
             'trip_progress': trip.item_progress
         })
 
-    return jsonify(tripList)
+        return jsonify(tripList)
 
     else:
         tripList.append({
@@ -174,8 +174,7 @@ def trip_info():
             'trip_progress': None
         })
 
-    return json(tripList)
-
+    return jsonify(tripList)
 
 
 @app.route("/about")
