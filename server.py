@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, flash, redirect, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Trip, wishlist
 from queryuser import add_wishlist, get_wishlist, update_status
+from query_volunteer import get_zipcode, get_asker_wishlist, get_asker_contact
 
 
 
@@ -153,16 +154,29 @@ def view_wishlist():
 
 
 
-@app.route("/volunteer-homepage")
+@app.route("/volunteer-homepage") # methods=["POST"]
 def show_volunteer_homepage():
     """Show homepage for volunteer."""
 
+    # this page shows active orders
+    # dashboard
+    # Search by zipcode?
+    zipcode = request.form.get("zipcode_input") 
+    same_zip = Relational.query.filter_by(zipcode=r_asker_id.uzipcode).all()
 
-    
     return render_template("volunteer.html")
+
+@app.route("/volunteer/<int:user_id>") # set up another page to view indivual list?
+def show_asker_wishlist():
+    """Show individual wishlist"""
+
+    # AJAX requests status change + button
+    # AJAX request: confrim button 
+    # AJAX request: wishlist complete button
 
 @app.route('/trips.json')
 def trip_info():
+    """Retrieving status of asker's wishlist"""
 
     trip = Trip.query.filter_by(session.user_id).first()
 
@@ -171,6 +185,9 @@ def trip_info():
     if trip:
 
         tripList.append({
+            # change to 
+            # 'user_full_name': user.user_full_name,
+            # 'wishlist': trip.wishlist,
             'trip_id': trip.trip_id,
             'trip_progress': trip.item_progress
         })
@@ -184,6 +201,7 @@ def trip_info():
         })
 
     return jsonify(tripList)
+
 
 
 @app.route("/about")
