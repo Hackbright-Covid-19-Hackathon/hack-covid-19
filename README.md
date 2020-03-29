@@ -75,3 +75,26 @@ The following features are planned for implementation:
 
 
 ## About the Developers:
+
+BestNeighbor was built by a team of recent software engineering academy grads. Below are their profiles:
+
+- Johanna Kinsler is a former automotive engineer and project manager turned software engineer. She is passionate about using data in decision making. She is looking for work in Full stack, back end, and data engineering.
+
+- Nichole Reyes is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
+
+- Bahar Asefi
+Entrepreneur turned developer interested in backend and full stack engineering. 
+
+- Yichen D
+Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
+
+- Jessica Chuynh
+Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript
+
+- Kim C
+Aspiring healthcare provider turned Software Engineer
+
+- Lauren Maghran
+Currently works in the environmental field, but is changing careers to software engineering. Lauren is  a curious person, love learning, and appreciate clever solutions!
+
+- Amber Chan is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
