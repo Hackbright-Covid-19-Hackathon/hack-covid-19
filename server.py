@@ -223,6 +223,101 @@ def trip_info():
     return jsonify(tripList)
 
 
+@app.route("/volunteer-homepage")
+def show_volunteer_homepage():
+    """Show homepage for volunteer and displays active orders."""
+    return render_template("volunteer.html")
+
+
+@app.route('/trips.json')
+def trip_info():
+    trip = Trip.query.filter_by(session.user_id).first()
+    tripList = []
+    if trip:
+        tripList.append({
+            'trip_id': trip.trip_id,
+            'trip_progress': trip.item_progress
+        })
+        return jsonify(tripList)
+    else:
+        tripList.append({
+            'trip_id': None,
+            'trip_progress': None
+        })
+    return jsonify(tripList)
+
+
+@app.route('/volunteer-all-wishlist')
+def display_asker_wishlist():
+    "Displays all avaliable wishlists"
+    return render_template("wishlists.html")
+
+
+@app.route('/wishlistInfo.json')
+def viewwishlists():
+    """ """
+    trip = Trip.query.filter_by(session.uzipcode, item_progress='incomplete').all()
+    wishlistList = []
+    if trip:
+        wishlistList.append({
+            'wishlist_id': trip.trip_id,
+            'wishlist_progress': trip.item_progress,
+            'wishlist': trip.wishlist
+            # shows number of items on list before clicking on wishlist
+        })
+        return jsonify(wishlistList)
+    else:
+        wishlistList.append({
+            'wishlist_id': None,
+            'Wishlist_progress': None,
+            'wishlist': None
+        })
+    return jsonify(wishlistList)
+
+
+@app.route('/volunteer-wishlist/<int:trip_id>')
+def display_asker_wishlist():
+    """Displays selected wishlist (single)"""
+    return render_template("single_wishlist.html")
+
+
+@app.route("/single_wishlist.json")
+def view_wishlist():
+    """ """
+    trip = Trip.query.filter_by(trip_id).first()
+    session['wishlist_id'] = trip.trip_id
+    trip_info = {
+        'wishlist_id': trip.trip_id,
+        'wishlist_progress': trip.item_progress,
+        'wishlist': trip.wishlist
+        }
+    return jsonify(trip_info)
+
+
+@app.route("/inprogress", methods=["POST"])
+def vol_status_in_progress():
+    """Update wishlist status to in progress."""
+    volunteer = session.get("wishlist_id")
+    current_status = 'In Progress'
+    trip = Trip.query.filter_by(trip_id).first()
+    trip.item_progress = current_status
+    new_status = vol_update_status(volunteer)
+    db.session.commit()
+    return new_status
+
+
+@app.route("/completed", methods=["POST"])
+def vol_status_completed():
+    """Update wishlist status to completed."""
+    volunteer = session.get("wishlist_id")
+    current_status = 'Completed!'
+    trip = Trip.query.filter_by(trip_id).first()
+    trip.item_progress = current_status
+    new_status = vol_update_status(volunteer)
+    db.session.commit()
+    return new_status
+
+
 @app.route("/about")
 def about():
     """about page"""
