@@ -4,7 +4,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User
-# , Relational, Trip, Wishlist
+
 
 
 app = Flask(__name__)
@@ -22,41 +22,13 @@ def check_logged_in():
 def homepage():
     """Show the homepage."""
 
-    # index.html should have form for user to choose if they want
-    # to be asker or volunteer
     return render_template("index.html")
-
-
-@app.route("/", methods=["POST"])
-def choose_user_type():
-    """Send user to their respoective volunteer or asker path."""
-    
-    user_type = request.form.get("user_type")
-
-    # This should be volunteer or asker
-    session["user_type"] = user_type
-
-    return redirect("/login")
-
-
-@app.route("/login")
-def show_login_page():
-    """Show page for user to log in."""
-
-    if session.get("user_id") != None:
-        user_id = session["user_id"]
-
-        if session["user_type"] = "asker":
-            return redirect(f"/asker-homepage/{user_id}")
-        elif session["user_type"] = "volunteer":
-            return redirect(f"/volunteer-homepage/{user_id}")
-
-    return render_template("login.html")
 
 
 @app.route("/login", methods=["POST"])
 def login_page():
     """Log in user and return to homepage."""
+
     username = request.form.get("username")
     password = request.form.get("password")
 
@@ -67,11 +39,7 @@ def login_page():
         if user.check_password(password):
             session["user_id"] = user.user_id
             flash("Successfully logged in!")
-
-            if session["user_type"] = "asker":
-                return redirect(f"/asker-homepage/{user_id}")
-            elif session["user_type"] = "volunteer":
-                return redirect(f"/volunteer-homepage/{user_id}")
+            return redirect(f"/user-homepage/{user_id}")
 
         else:
             flash("Incorrect password, please try again.")
@@ -84,12 +52,14 @@ def login_page():
 @app.route("/register")
 def show_registration_page():
     """Show page for use to register for an account."""
+
     return render_template("register.html")
 
 
 @app.route("/register", methods=["POST"])
 def register_user():
     """Create account for user by adding them to database."""
+
     fname = request.form.get("fname")
     lname = request.form.get("lname")
     form_phone = request.form.get("phone")
@@ -109,10 +79,7 @@ def register_user():
         session["user_id"] = new_user.user_id
         flash("Successfully created an account!")
 
-        if session["user_type"] = "asker":
-            return redirect(f"/asker-homepage/{user_id}")
-        elif session["user_type"] = "volunteer":
-            return redirect(f"/volunteer-homepage/{user_id}")
+        return redirect(f"/user/{user_id}")
 
 
     else:
@@ -123,6 +90,7 @@ def register_user():
 @app.route("/logout")
 def logout_user():
     """Log user out of current session."""
+
     if session.get("user_id") != None:
         del session["user_id"]
         flash("Successfully logged out!")
@@ -131,65 +99,40 @@ def logout_user():
         flash("You're not currently logged in!")
         return redirect("/")
 
-@app.route("/asker-homepage"):
+
+@app.route("/user-homepage")
+def show_user_homepage():
+    """ Show user homepage."""
+
+    return render_template("user.html")
+
+@app.route("/asker-homepage")
 def show_asker_homepage():
     """Show homepage for asker."""
-    # Page should show active orders and connect to page to see status
-    # something on page should link to route "/create-order"
-    return render_template("asker-homepage.html")
+    
+    return render_template("asker.html")
 
 
-@app.route("/create-order"):
+@app.route("/create")
 def show_order_form():
     """Show order form."""
-    return render_template("order-form.html")
 
-
-@app.route("/create-order", methods=["POST"]):
-def save_order():
-    """Save order from form inputs."""
-    # Not sure how we plan to take info from order form
     return redirect("/asker-homepage")
 
 
-@app.route("/volunteer-homepage"):
+@app.route("/create", methods=["POST"])
+def save_order():
+    """Save order from form inputs."""
+
+    return redirect("/asker-homepage")
+
+
+@app.route("/volunteer-homepage")
 def show_volunteer_homepage():
     """Show homepage for volunteer."""
-    # Page should have volunteer enter their zipcode
-    return render_template("volunteer-homepage.html")
+    
+    return render_template("volunteer.html")
 
-
-@app.route("/volunteer-homepage"):
-def show_volunteer_homepage():
-    """Show homepage for volunteer."""
-    # Page should show active orders they signed up for
-    # Page should link to form for volunteer to enter their zipcode
-    return render_template("volunteer-homepage.html")
-
-
-@app.route("/volunteer-signup")
-def show_volunteer_signup():
-    """Show form for volunteer to enter zipcode"""
-    # Page should have volunteer enter their zipcode
-    return render_template("volunteer-signup.html")
-
-
-# For these routes, not sure how to write since I don't know how
-# Backend team plans to implement these?
-@app.route("/volunteer-signup", methods=["POST"])
-def show_volunteer_options():
-    """Show order options for volunteer to sign up for."""
-    # Page should have a checkbox list of orders volunteers can sign up for
-    return render_template("")
-
-
-""""-volunteer confirmed items (POST) 
-      -reveals asker's phone/email
-        - <contact each other>
-               -purchased confirm (POST) -status change
-                       -asker's address reveals (GET, POST) / <contact each other> REMOVED all communication for 
-                            -mark order completed
-"""
 
 
 if __name__ == "__main__": 
