@@ -56,7 +56,7 @@ $ python3 server.py
 
 ### Homepage
 
-![](https://drive.google.com/open?id=1cVE41Yyto-YpKFC59b4RSMO4kgkzkzkZ)
+![](https://drive.google.com/file/d/1uldk8o5CfXHC2rNUrYLB-rJplla2PA8S/view?usp=sharing)
 
 ### Volunteer page
 
