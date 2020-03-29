@@ -9,10 +9,9 @@ def get_user_email(user_id):
         >>> get_user_email('2')
         jessica@gmail.com
     """
-
     # Get user email via its id
     user = User.query.filter_by(user_id=user_id).first()
-    
+    # print(user.email)
     return user.email
 
 
@@ -25,10 +24,9 @@ def get_user_zipcode(user_id):
         >>> get_user_zipcode('2')
         'ca 94134'
     """
-
     # Get user email via its id
     user = User.query.filter_by(user_id=user_id).first()
-    
+    # print(user.uzipcode)
     return user.uzipcode
 
 
@@ -38,15 +36,24 @@ def add_wishlist(new_wishlist, zipcode, asker):
     this_user = User.query.filter_by(user_id=asker).first()
     # print("before update", this_user)
     this_user.wishlist = new_wishlist
+
     this_user.uzipcode = zipcode
-    # print("After update", this_user)
-    db.session.commit()
     
+    db.session.commit()
+    # print("After update", this_user)
     return 'New wishlist created.'
 
 
 def get_wishlist(user_id):
+    """Query database for wishlist and status."""
 
+    this_user = User.query.filter_by(user_id=asker).first()
+
+    wishlist = this_user.wishlist
+    # print(wishlist)
+    status = this_user.item_progress
+    # print(status)
+    return {'wishlist': wishlist, 'status': status}
 
 
 ############################################################################

@@ -1,10 +1,10 @@
 """Covid19 Hackathon"""
 
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
-from queryuser import add_wishlist, get_wishlist
+from queryuser import add_wishlist, get_wishlist, get_user_zipcode, add_wishlist
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -209,7 +209,9 @@ def view_wishlist():
 
     asker = session.get("user_id")
 
-    return get_wishlist(user_id)
+    incomplete_order = get_wishlist(user_id)
+
+    return jsonify(incomplete_order)
 
 
 @app.route("/inprogress")
