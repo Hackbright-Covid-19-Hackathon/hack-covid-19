@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, flash, redirect, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
 from queryuser import add_wishlist, get_wishlist, update_status
+from query_volunteer import get_zipcode, get_asker_wishlist, get_asker_contact
 
 
 app = Flask(__name__)
@@ -185,18 +186,22 @@ def view_wishlist():
     return jsonify(incomplete_order)
 
 
-<<<<<<< HEAD
-
-@app.route("/volunteer-homepage")
-def show_volunteer_homepage():
-    """Show homepage for volunteer."""
 
 
-=======
+# @app.route("/volunteer-homepage") # methods=["POST"]
+# def show_volunteer_homepage():
+#     """Show homepage for volunteer."""
+
+#     # this page shows active orders
+#     # dashboard
+#     # Search by zipcode?
+#     zipcode = request.form.get("zipcode_input") 
+#     same_zip = Relational.query.filter_by(zipcode=r_asker_id.uzipcode).all()
+
+
 @app.route("/inprogress")
 def status_in_progress():
     """Update wishlist status to in progress."""
->>>>>>> 3dac6c1e53643acbcda20b6584e2ca72b4562352
     
     asker = session.get("user_id")
 
@@ -215,9 +220,20 @@ def status_completed():
 
     return new_status
 
+    # return render_template("volunteer.html")
+
+
+@app.route("/volunteer/<int:user_id>") # set up another page to view indivual list?
+def show_asker_wishlist():
+    """Show individual wishlist"""
+
+    # AJAX requests status change + button
+    # AJAX request: confrim button 
+    # AJAX request: wishlist complete button
 
 @app.route('/trips.json')
 def trip_info():
+    """Retrieving status of asker's wishlist"""
 
     trip = Trip.query.filter_by(session.user_id).first()
 
@@ -226,6 +242,9 @@ def trip_info():
     if trip:
 
         tripList.append({
+            # change to 
+            # 'user_full_name': user.user_full_name,
+            # 'wishlist': trip.wishlist,
             'trip_id': trip.trip_id,
             'trip_progress': trip.item_progress
         })
@@ -239,6 +258,7 @@ def trip_info():
         })
 
     return jsonify(tripList)
+
 
 
 @app.route("/about")

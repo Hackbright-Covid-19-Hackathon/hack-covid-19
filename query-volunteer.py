@@ -10,69 +10,62 @@ Volunteer Page Route Plan
                       -mark order completed
 """      
 
-@app.route("/volunteer-homepage")
-def show_volunteer_signup():
-    """Show homepage for volunteer."""
 
-    # Page should have volunteer enter their zipcode
-    zipcode = request.args("zipcode_input")
+# @app.route("/volunteer-homepage")
+def get_zipcode:
 
-    return render_template("volunteer-signup.html", zipcode=zipcode)
-
-
-@app.route("/volunteer-signup", methods=["GET","POST"])
-def show_volunteer_options(zipcode): # value from show_volunteer_signup
-     """Show order options for volunteer to sign up for."""
-
-    ## zipcode = request.args("zipcode_input")
-
-    # query into the database for users with the same zipcode
-    # going through relational table, then user zipcode
     same_zip = Relational.query.filter_by(zipcode=r_asker_id.uzipcode).all()
 
-    return jsonify(same_zip) # to populate options on the page
+    return same_zip
 
 
-@app.route("/volunteer/<int:user_id>")
-def display_user_wishlist():
-    """Display individual user's wishlist"""
+# def get_asker_wishlist:
 
-    user_wish = Trip.query.filter_by(user_id=wishlist).first()
+#     user_wish = Trip.query.filter_by(user_id=wishlist).first()
 
-    asker_phone = User.query.get(email)
-
-    # reveals asker's phone/email
-    return render_template("asker-wishlist.html") # not sure if we need a new page here
+#     return user_wish
 
 
-#Yichen's template
-@app.route("/inprogress", methods=["POST"]) ## Make AJAX Request?
-def volunteer_confirm_task():
-    """Sends in progress status to database"""
-    # includes a button to change status to "in progress"
+def get_asker_contact:
+
+    asker_email = User.query.get(email)
+
+    return asker_contact
 
 
-@app.route("/inprogress") 
-def status_in_progress():
-    """Routes to in progress page"""
+# #Yichen's template
 
-    # displays a page that shows in progress?
-    return render_template("asker-wishlist-inprogress.html")
+# @app.route("/inprogress", methods=["POST"]) ## Make AJAX Request?
 
-
-@app.route("/completed", methods=["POST"]) ## Make AJAX Request?
-def grocery_delivered():
-    """Sends completed wishlist status to database"""
-
-    return redirect("/")
+# def volunteer_confirm_task():
+#     """Sends in progress status to database"""
+#     # includes a button to change status to "in progress"
 
 
-@app.route("/completed") 
-def status_complete():
-    """routes to completed page"""
-    # volunteer confirms items -- another button
 
-    return render_template("asker-wishlist-completed.html")
+# @app.route("/inprogress")
+
+# def status_in_progress():
+#     """Routes to in progress page"""
+
+#     # displays a page that shows in progress?
+#     return render_template("asker-wishlist-inprogress.html")
+
+
+# @app.route("/completed", methods=["POST"]) ## Make AJAX Request?
+# def grocery_delivered():
+#     """Sends completed wishlist status to database"""
+
+#     return redirect("/")
+
+
+# @app.route("/completed") ## Make AJAX Request?
+# def status_complete():
+#     """routes to completed page"""
+#     # volunteer confirms items -- another button
+
+#     return render_template("asker-wishlist-completed.html")
+
 
 
 
