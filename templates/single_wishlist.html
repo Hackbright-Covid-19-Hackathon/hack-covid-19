@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/styles.css"/>
+
+<b><h2>Wishlist Items:</h2></b>
+
+<script>
+    $.get('/single_wishlist.json', data, (res) => {
+        const singleWishlist =(`
+        <div class="single-wishlist">
+            ${res.wishlist_id}
+            <br>
+            ${res.wishlist}
+            <br>
+            ${res.wishlist_progress}
+        </div>`)
+    });
+
+    {singleWishlist}
+
+    $('#btn').on('click', (evt) => {
+        evt.preventDefault();
+        $POST
+    });
+
+</script>
+
+<br>
+<button type="button" action="/inprogress" class="btn btn-primary">Choose this wishlist</button>
+<br>
+<b>Click this button once the wishlist items have been delivered: </b>
+<button type="button" action="/completed" class="btn btn-primary">Completed</button>

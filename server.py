@@ -34,23 +34,30 @@ def display_user_type():
     return render_template("user.html")
 
 
-@app.route("/login")
+@app.route("/login", methods=["POST"])
 def login_page():
     """Log in user and return to homepage."""
 
-    username = request.form.get("username")
+    email = request.form.get("email")
+    print(f'\n\nemail: {email}')
     password = request.form.get("password")
+    print(f'\n\npassword: {password}')
+    
+    # import ipdb; ipdb.set_trace()
 
-    user = User.query.filter_by(user_full_name=username).first()
+    user = User.query.filter_by(email=email).first()
+    # db.session.query((User.user_full_name),\ 
+    #                         .filter(User.email == email)).first
+    #                          #
     if user:
-        if user.check_password(password):
+        if user.check_password(password): #updated variable name from password to password_hash
             session["user_id"] = user.user_id
             flash("Successfully logged in!")
             return redirect("/user")
 
         else:
             flash("Incorrect password, please try again.")
-            return redirect("/login")
+            return redirect("/")
     else:
         flash("No user found with that username. Please register for an account.")
         return redirect("/register")
@@ -72,7 +79,7 @@ def register_user():
     password = request.form.get("password")
     zipcode = request.form.get("zipcode")
     
-    if not User.query.filter_by(username=username).all():
+    if not User.query.filter_by(user_full_name=username).all():
         new_user = User(email=email, 
                         user_full_name=username, 
                         uzipcode=zipcode)

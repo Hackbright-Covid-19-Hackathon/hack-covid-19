@@ -48,3 +48,12 @@ body {
     background-color: #918600;
     color: #E2E1D5;
 }
+
+#developers-box, #about-box {
+    background-color: rgba(252, 225, 129, 0.9);
+    color: #026670;
+    padding: 2rem;
+    margin: 2rem;
+    font-weight: bold;
+    font-size: 20px;
+} 
