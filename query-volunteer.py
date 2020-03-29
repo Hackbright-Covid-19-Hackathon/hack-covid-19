@@ -64,6 +64,8 @@ def status_in_progress():
 def grocery_delivered():
     """Sends completed wishlist status to database"""
 
+    return redirect("/")
+
 
 @app.route("/completed") ## Make AJAX Request?
 def status_complete():
