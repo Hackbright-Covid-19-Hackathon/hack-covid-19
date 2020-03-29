@@ -55,7 +55,6 @@ $ python3 server.py
 ## Features
 
 ### Homepage
-
 ![](https://drive.google.com/open?id=1QlcO8I4tna36-Pdr64D4aLzh6idvaIHV)
 
 ### Volunteer page
