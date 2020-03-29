@@ -167,7 +167,7 @@ def create_wishlist():
 
 
 @app.route("/incomplete")
-def view_wishlist():
+def asker_view_wishlist():
     """Display wishlist."""
 
     asker = session.get("user_id")
@@ -177,30 +177,12 @@ def view_wishlist():
     return jsonify(incomplete_order)
 
 
-<<<<<<< HEAD
-
-
-# @app.route("/volunteer-homepage") # methods=["POST"]
-# def show_volunteer_homepage():
-#     """Show homepage for volunteer."""
-
-#     # this page shows active orders
-#     # dashboard
-#     # Search by zipcode?
-#     zipcode = request.form.get("zipcode_input") 
-#     same_zip = Relational.query.filter_by(zipcode=r_asker_id.uzipcode).all()
-
 
 @app.route("/inprogress")
 def status_in_progress():
     """Update wishlist status to in progress."""
-    
-=======
-@app.route("/inprogress")
-def status_in_progress():
-    """Update wishlist status to in progress."""
 
->>>>>>> jess
+
     asker = session.get("user_id")
 
     new_status = update_status(asker)
@@ -221,14 +203,6 @@ def status_completed():
     # return render_template("volunteer.html")
 
 
-@app.route("/volunteer/<int:user_id>") # set up another page to view indivual list?
-def show_asker_wishlist():
-    """Show individual wishlist"""
-
-    # AJAX requests status change + button
-    # AJAX request: confrim button 
-    # AJAX request: wishlist complete button
-
 @app.route("/volunteer-homepage")
 def show_volunteer_homepage():
     """Show homepage for volunteer and displays active orders."""
@@ -247,9 +221,6 @@ def trip_info():
     if trip:
 
         tripList.append({
-            # change to 
-            # 'user_full_name': user.user_full_name,
-            # 'wishlist': trip.wishlist,
             'trip_id': trip.trip_id,
             'trip_progress': trip.item_progress
         })
@@ -266,7 +237,7 @@ def trip_info():
 
 
 @app.route('/volunteer-all-wishlist')
-def display_asker_wishlist():
+def display_asker_wishlists():
     """Displays all avaliable wishlists"""
 
     return render_template("wishlists.html")
@@ -296,15 +267,15 @@ def viewwishlists():
 
 
 @app.route('/volunteer-wishlist/<int:trip_id>')
-def display_asker_wishlist():
+def display_asker_single_wishlist():
     """Displays selected wishlist (single)"""
 
     return render_template("single_wishlist.html")
 
 
 @app.route("/single_wishlist.json")
-def view_wishlist():
-    """ """
+def vol_view_wishlist():
+    """Display a single selected wishlist"""
 
     trip = Trip.query.filter_by(trip_id).first()
 
