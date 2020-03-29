@@ -31,20 +31,24 @@
     <h2>Active Wishlists: </h2>
     <br>
     <script>
-      // jinja for loop for displaying list of wishlists
         $.get('/wishlist.json'), data, (res) => {
             for (const wishlist of wishlists) {
                 const activeWishlists = (`
                 <div class="user-wishlists">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Wishlist #:</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                    </table>
+                  <table class="user-wishlists">
+                      <thead>
+                          <tr>
+                              <th scope="col">Wishlist #:</th>
+                              <th scope="col">Status:</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <th scope="col">{{user.wishlist.wishlist}}</th>
+                              <th scope="col">{{user.wishlist.status}}</th>
+                          </tr>
+                      </tbody>
+                  </table>
                 </div>
                         `)
             }
