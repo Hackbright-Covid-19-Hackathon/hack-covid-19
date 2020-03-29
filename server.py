@@ -12,13 +12,6 @@ app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
 
 
-# def check_logged_in():
-#     if session.get("user_id") == None:
-#         flash("You're not currently logged in!")
-#         return redirect("/login")
-
-
-
 @app.route("/")
 def homepage():
     """Show the homepage."""
