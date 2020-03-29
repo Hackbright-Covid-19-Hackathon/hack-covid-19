@@ -1,0 +1,14 @@
+trip_id,trip_zipcode,user_id,wishlist,item_progress
+1,94041,1,"""fresh lettuce, olives, cucumbers, bread""",Selected
+2,94102,2,"""toilet paper, hand sanitizer, N-95 mask""",Unselected
+3,94127,3,"""canned black beans, tortilla chips, daiya, salsa""",Selected
+4,94123,4,"""bananas, tomatoes, cheese, bread, turkey slices, mayonaise""",Unselected
+5,94123,5,"""angel hair, marinara sauce, fresh basil, parmesan""",Selected
+6,94127,6,"""whipped cream, ice cream""",Unselected
+7,94127,7,"""almond milk, oatmeal""",Selected
+8,94102,8,"""red lentils, ginger, garlic, tumeric, onion, tomato, cinnamon""",Unselected
+9,94041,9,"""coconut milk, canned pineapple""",Selected
+10,94041,10,"""kale, tomatoes, navy beans, ground beef, basil, oregano, onion""",Unselected
+11,94102,11,"""cliff bars - 24 of them""",Selected
+12,94102,12,"""cranberries, walnuts, apples, apple cider vinegar, lemon"" ",Unselected
+13,94102,13,"""mars bars""",Selected
