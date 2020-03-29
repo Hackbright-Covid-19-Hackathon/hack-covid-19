@@ -8,16 +8,21 @@
 
 <script>
     $.get('/single_wishlist.json', data, (res) => {
-        (`${trip_info['wishlist_id']}
-        <br>
-        ${trip_info['wishlist']}
-        <br>
-        ${trip_info['wishlist_progress']}
-        `);
+        const singleWishlist =(`
+        <div class="single-wishlist">
+            ${res.wishlist_id}
+            <br>
+            ${res.wishlist}
+            <br>
+            ${res.wishlist_progress}
+        </div>`)
     });
+
+    {singleWishlist}
 
     $('#btn').on('click', (evt) => {
         evt.preventDefault();
+        $POST
     });
 
 </script>
