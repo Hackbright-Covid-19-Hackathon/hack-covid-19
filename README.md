@@ -91,8 +91,7 @@ Previously a pioneer full-time world language teacher, with extensive experience
 - Jessica Chuynh
 Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript
 
-- Kim C
-Aspiring healthcare provider turned Software Engineer
+- Kimberly Chuc is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
 
 - Lauren Maghran
 Currently works in the environmental field, but is changing careers to software engineering. Lauren is  a curious person, love learning, and appreciate clever solutions!
