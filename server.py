@@ -24,6 +24,13 @@ def homepage():
     return render_template("index.html")
 
 
+@app.route("/transit")
+def display_user_type():
+    """Show a transit page for user to choose to be volunteer or create wishlist."""
+
+    return render_template("user.html")
+
+
 @app.route("/transit", methods=["POST"])
 def choose_user_type():
     """Send user to their respective volunteer or asker path."""
@@ -36,10 +43,10 @@ def choose_user_type():
     session["user_type"] = user_type
 
     if session["user_type"] = "asker":
-        return redirect(f"/asker-homepage/{user_id}")
+        return redirect("/asker-homepage")
 
     if session["user_type"] = "volunteer":
-        return redirect(f"/volunteer-homepage/{user_id}")
+        return redirect("/volunteer-homepage")
 
 
 @app.route("/login")
@@ -50,9 +57,9 @@ def show_login_page():
         user_id = session["user_id"]
 
         if session["user_type"] = "asker":
-            return redirect(f"/asker-homepage/{user_id}")
+            return redirect("/transit")
         elif session["user_type"] = "volunteer":
-            return redirect(f"/volunteer-homepage/{user_id}")
+            return redirect("/transit")
 
     return render_template("login.html")
 
