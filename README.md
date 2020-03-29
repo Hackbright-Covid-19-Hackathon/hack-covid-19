@@ -12,8 +12,8 @@ Through BestNeighbor, a person in need of help can provide a wishlist of items t
 ### How we built it
 
 In 48-hours, our team brainstormed the project idea, built, integrated and tested the webapp using the following software stack:
-Backend: Postgresql, Flask, SqlAlchemy
-Frontend: HTML, CSS, Bootstrap
+- Backend: Postgresql, Flask, SqlAlchemy
+- Frontend: HTML, CSS, Bootstrap
 
 ## Installation
 
@@ -69,7 +69,7 @@ $ python3 server.py
 
 ## What’s next
 The following features are planned for implementation:
-- Secure messaging within webapp to keep user’s personal phone number and email private
+- Secure messaging within the webapp to keep user’s personal phone number and email private
 - Ratings system for volunteers
 - User verification
 
