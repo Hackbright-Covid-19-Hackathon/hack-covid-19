@@ -11,7 +11,7 @@
 <body>
   <h2>Add to Wishlist</h2>
   <div id="add_to_wishlist">
-    <form action="" method="post">
+    <form action="/create" method="post">
       <label for="wishlist">Add to Wishlist:</label>
       <textarea id="wishlist" name="wishlist" 
                       rows="10" 
@@ -28,12 +28,11 @@
   <!-- display wishlist after it's submitted -->
   <!-- GET request to the server to get user's incomplete wishlists and status (inprogress/incomplete)-->
   <div>
-    <h2>Active Wishlists: </h2>
+    <h2>Active Wishlist: </h2>
     <br>
     <script>
-        $.get('/wishlist.json'), data, (res) => {
-            for (const wishlist of wishlists) {
-                const activeWishlists = (`
+        $.get('/incomplete'), data, (res) => {
+                const activeWishlist = (`
                 <div class="user-wishlists">
                   <table class="user-wishlists">
                       <thead>
@@ -44,15 +43,15 @@
                       </thead>
                       <tbody>
                           <tr>
-                              <th scope="col">${user.wishlist.wishlist}</th>
-                              <th scope="col">${user.wishlist.status}</th>
+                              <th scope="col">${res.wishlist}</th>
+                              <th scope="col">${res.status}</th>
                           </tr>
                       </tbody>
                   </table>
                 </div>
                         `)
             }
-        }
+            {activeWishlist}
     </script>
 </div>
   <!-- wishlist shows completed/not completed status -->
