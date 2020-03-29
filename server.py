@@ -4,12 +4,12 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User
-from queryuser import add_wishlist, get_wishlist, update_status
+# from queryuser import add_wishlist, get_wishlist, update_status
 
 
 
 app = Flask(__name__)
-<<<<<<< HEAD
+
 app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
 
@@ -126,17 +126,22 @@ def show_order_form():
 @app.route("/create", methods=["POST"])
 def create_wishlist():
     """Get asker's wishlist and zipcode to save in database."""
+
     new_wishlist = request.args.get('wishlist')
     zipcode = request.args.get('zipcode')
     asker = session.get("user_id")
     update_database(new_wishlist, zipcode, asker)
     print("200")
+
     return redirect("asker-homepage")
+
 @app.route("/incomplete")
 def view_wishlist():
     """Display wishlist."""
+
     asker = session.get("user_id")
     incomplete_order = get_wishlist(asker)
+
     return jsonify(incomplete_order)
 
 
