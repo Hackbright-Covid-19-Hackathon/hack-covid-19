@@ -55,6 +55,15 @@ def get_wishlist(user_id):
     # print(status)
     return {'wishlist': wishlist, 'status': status}
 
+def update_status(user_id):
+    """Query database for new status."""
+
+    this_user = User.query.filter_by(user_id=asker).first()
+
+    status = this_user.item_progress
+
+    return {'status': status}
+
 
 ############################################################################
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
-from queryuser import add_wishlist, get_wishlist, get_user_zipcode, add_wishlist
+from queryuser import add_wishlist, get_wishlist, update_status
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -199,8 +199,10 @@ def create_wishlist():
     asker = session.get("user_id")
 
     update_database(new_wishlist, zipcode, asker)
+    print("200")
 
-    return "200"
+    return redirect("asker-homepage")
+
 
 
 @app.route("/incomplete")
@@ -209,19 +211,31 @@ def view_wishlist():
 
     asker = session.get("user_id")
 
-    incomplete_order = get_wishlist(user_id)
+    incomplete_order = get_wishlist(asker)
 
     return jsonify(incomplete_order)
 
 
 @app.route("/inprogress")
 def status_in_progress():
-    pass
+    """Update wishlist status to in progress."""
+    
+    asker = session.get("user_id")
+
+    new_status = update_status(asker)
+
+    return new_status
 
 
 @app.route("/completed")
-def status_in_complete():
-    pass
+def status_completed():
+    """Update wishlist status to completed."""
+
+    asker = session.get("user_id")
+
+    new_status = update_status(asker)
+
+    return new_status
 
 
 if __name__ == "__main__": 
