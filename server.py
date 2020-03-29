@@ -3,9 +3,8 @@
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session
 from flask_debugtoolbar import DebugToolbarExtension
-from model import connect_to_db, db, User
-# , Relational, Trip, Wishlist
-
+from model import connect_to_db, db, User, Relational, Trip, Wishlist
+from queryuser import add_wishlist, get_wishlist
 
 app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
@@ -190,6 +189,37 @@ def show_volunteer_options():
                        -asker's address reveals (GET, POST) / <contact each other> REMOVED all communication for 
                             -mark order completed
 """
+
+@app.route("/create", methods=["POST"])
+def create_wishlist():
+    """Get asker's wishlist and zipcode to save in database."""
+
+    new_wishlist = request.args.get('wishlist')
+    zipcode = request.args.get('zipcode')
+    asker = session.get("user_id")
+
+    update_database(new_wishlist, zipcode, asker)
+
+    return "200"
+
+
+@app.route("/incomplete")
+def view_wishlist():
+    """Display wishlist."""
+
+    asker = session.get("user_id")
+
+    return get_wishlist(user_id)
+
+
+@app.route("/inprogress")
+def status_in_progress():
+    pass
+
+
+@app.route("/completed")
+def status_in_complete():
+    pass
 
 
 if __name__ == "__main__": 

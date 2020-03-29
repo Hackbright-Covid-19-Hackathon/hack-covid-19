@@ -4,10 +4,10 @@ def get_user_email(user_id):
     """Query database for user email.
 
     Examples:
-        >>> get_user_email('johnsonamanda@hotmail.com')
-        1
-        >>> get_user_email('msdaiyichen@gmail.com')
-        48
+        >>> get_user_email('1')
+        msdaiyichen@gmail.com
+        >>> get_user_email('2')
+        jessica@gmail.com
     """
 
     # Get user email via its id
@@ -20,16 +20,33 @@ def get_user_zipcode(user_id):
     """Query database for user zipcode.
 
     Examples:
-        >>> get_user_id('johnsonamanda@hotmail.com')
-        1
-        >>> get_user_id('msdaiyichen@gmail.com')
-        48
+        >>> get_user_zipcode('1')
+        'ca 94014'
+        >>> get_user_zipcode('2')
+        'ca 94134'
     """
 
     # Get user email via its id
     user = User.query.filter_by(user_id=user_id).first()
     
     return user.uzipcode
+
+
+def add_wishlist(new_wishlist, zipcode, asker):
+    """Send asker's wishlist to the database."""
+
+    this_user = User.query.filter_by(user_id=asker).first()
+    # print("before update", this_user)
+    this_user.wishlist = new_wishlist
+    this_user.uzipcode = zipcode
+    # print("After update", this_user)
+    db.session.commit()
+    
+    return 'New wishlist created.'
+
+
+def get_wishlist(user_id):
+
 
 
 ############################################################################
