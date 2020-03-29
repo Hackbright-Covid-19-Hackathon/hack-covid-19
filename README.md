@@ -1,4 +1,4 @@
-#BestNeighbor
+# BestNeighbor
 ### Inspiration
  
 The COVID_19 pandemic has severely impacted the most vulnerable members of our community, and it has strained those working on the frontlines of the response. Our team wanted to provide our community with a tool where people in need can ask for help in getting grocery items, and volunteers can log in and provide the help. 
@@ -12,8 +12,8 @@ Through BestNeighbor, a person in need of help can provide a wishlist of items t
 ### How we built it
 
 In 48-hours, our team brainstormed the project idea, built, integrated and tested the webapp using the following software stack:
-Backend: Postgresql, Flask, SqlAlchemy
-Frontend: HTML, CSS, Bootstrap
+- Backend: Postgresql, Flask, SqlAlchemy
+- Frontend: HTML, CSS, Bootstrap
 
 ## Installation
 
@@ -69,31 +69,31 @@ $ python3 server.py
 
 ## What’s next
 The following features are planned for implementation:
-- Secure messaging within webapp to keep user’s personal phone number and email private
+- Secure messaging within the webapp to keep user’s personal phone number and email private
 - Ratings system for volunteers
 - User verification
 
 
 ## About the Developers:
 
-BestNeighbor was built by a team of recent software engineering academy grads. Below are their profiles:
+**BestNeighbor** was built by a team of recent software engineering academy grads. Below are their profiles:
 
-- Johanna Kinsler is a former automotive engineer and project manager turned software engineer. She is passionate about using data in decision making. She is looking for work in Full stack, back end, and data engineering.
+- **Johanna Kinsler** is a former automotive engineer and project manager turned software engineer. She is passionate about using data in decision making. She is looking for work in Full stack, back end, and data engineering.
 
-- Nichole Reyes is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
+- **Nichole Reyes** is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
 
-- Kimberly Chuc is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
+- **Kimberly Chuc** is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
 
-- Amber Chan is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
+- **Amber Chan** is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
 
-- Bahar Asefi is an entrepreneur turned developer interested in backend and full stack engineering. 
+- **Bahar Asefi** is an entrepreneur turned developer interested in backend and full stack engineering. 
 
-- Yichen D
+- **Yichen D**
 Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
 
-- Jessica Chuynh
+- **Jessica Chuynh**
 Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript
 
-- Lauren Maghran currently works in the environmental field, but is changing careers to software engineering. Lauren is a curious person, love learning, and appreciate clever solutions!
+- **Lauren Maghran** currently works in the environmental field, but is changing careers to software engineering. Lauren is a curious person, love learning, and appreciate clever solutions!
 
 
