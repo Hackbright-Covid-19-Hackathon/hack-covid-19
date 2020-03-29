@@ -13,8 +13,7 @@
     <br>
     <script>
         $.get('/trips.json'), data, (res) => {
-            for (const trip of trips) {
-                const activeOrders = (`
+            for (const trip of trips) {(`
                 <div>
                     <table class="table table-striped">
                         <thead>
