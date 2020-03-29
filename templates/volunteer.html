@@ -12,19 +12,33 @@
         <h2>Active Orders: </h2>
         <br>
         <script>
-            $.get('/wishlist.json'), data, (res) => {
-                for (const wishlist of wishlists) {
+            $.get('/trips.json'), data, (res) => {
+                for (const trip of trips) {
                     const activeOrders = (`
-                    <div class="wishlist-progress">
-                        <table class="table">
+                    <div>
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Order #:</th>
-                                    <th scope="col">Status:</th>
-                            </)
+                                    <th>Order #:</th>
+                                    <th>Status:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each trip}}
+                                    <tr>
+                                        <td>${trip_id}</td>
+                                        <td>${trip_progress}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>`);
                 }
             }
         </script>
     </div>
-{% endif %}
+    <br>
 
+    <button type="button" action="/wishlists.html" class="btn btn-primary">View available wishlists</button>
+    <br>
+{% endif %}

@@ -1,6 +1,8 @@
 """Models and database functions for covid19 hackathon project."""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 db = SQLAlchemy()
 #db createdb volunteerdb
@@ -16,47 +18,61 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    user_full_name= db.Column(db.String(64), nullable=True)
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+                        nullable=False)
+    user_full_name = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
-    password = db.Column(db.String(64), nullable=True)
+    password_hash = db.Column(db.String(100), nullable=False)
     uzipcode = db.Column(db.String(15), nullable=True)
-    is_asker= db.Column(db.Boolean(), nullable= True)
-    is_vol= db.Column(db.Boolean(), nullable= True)
-    trust_score= db.Column(db.String(15), nullable=True)
-    # trip = db.relationship("Trip",
-    #                        backref=db.backref("relations", 
-    #                        order_by=user_id))
+    is_asker = db.Column(db.Boolean(), nullable=True)
+    is_vol = db.Column(db.Boolean(), nullable=True)
+    trust_score = db.Column(db.String(15), nullable=True)
+    
+    # relationships
+    # relationship in 'Trip' class
+    # relationship in 'Relational' class
+
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return f"<User user_id={self.user_id} zipcode={self.uzipcode}>"
 
+    def set_password(self, password):
+        """Use werkzeug.security's password_hash to securely save password."""
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        """Check if password given matches hashed password."""
+        return check_password_hash(self.password_hash, password)
+
+
 class Relational(db.Model):
 
-    __tablename__= "relations"
+    __tablename__ = "relations"
 
-    relation_id= db.Column(db.Integer, autoincrement=True, primary_key=True)
-    r_asker_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
-    r_vol_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable= True)
+    relation_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+                        nullable = False)
+    r_asker_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
+    r_vol_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable= True)
     r_trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'), nullable= True)
 
-#     # #relationships with the user table
-#     # r_asker_id_rel = db.relationship('User', 
-#     #                                 foreign_keys="[User.user_id]", 
-#     #                                 backref='relational_asker')
+    #relationships with the user table
+    r_asker_id_rel = db.relationship('User', 
+                                    foreign_keys="[Relational.r_asker_id]", 
+                                    backref='relational_asker')
 
-#     # r_vol_id_rel = db.relationship('User', 
-#     #                                 foreign_keys="[User.user_id]", 
-#     #                                 backref='relational_volunteer')
+    r_vol_id_rel = db.relationship('User',
+                                    foreign_keys="[Relational.r_vol_id]",
+                                    backref='relational_volunteer')
 
 class Trip(db.Model):
     """Items that a user requests"""
 
     __tablename__ = "trips"
 
-    trip_id= db.Column(db.Integer, autoincrement=True, primary_key=True)
+    trip_id= db.Column(db.Integer, autoincrement=True, primary_key=True, 
+                        nullable = False)
     trip_zipcode= db.Column(db.String(15))
     user_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
     wishlist = db.Column(db.Text(), nullable=True)
@@ -73,59 +89,15 @@ class Wishlist(db.Model):
 
     __tablename__ = "wishlist"
 
-    wish_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    wish_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+                                nullable = False)
     # wish_item_desc= db.Column(db.)
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
-        return f"""<Item ={self.item_description}>"""
+        return f"""<Item ={self.wish_item_id}>"""
 
-# # db.create_all()
-
-
-# c1 = User(
-# user_full_name= "Faker Fakey",
-# email = "fake@gmail.com",
-# password = "123",
-# uzipcode = "94805",
-# is_asker= True,
-# is_vol= False
-# )
-
-    # c2 = User(
-    # user_full_name= "Faker RE Fakey",
-    # email = "@gmail.com",
-    # password = "1235",
-    # uzipcode = "94121",
-    # is_asker= False,
-    # is_vol= True
-    # )
-
-    # r1 = Relational(
-    # r_asker_id= 1,
-    # r_vol_id_rel= 1,
-    # r_asker_id_rel= 1
-    # # r_vol_id= 2, 
-    # # r_trip_id = 1
-    # )
-
-    # t1 = Trip(
-    # trip_zipcode= "94805",
-    # user_id= 1,
-    # wishlist = "I want a kitten",
-    # item_progress= "En Route"
-    # ) 
-
-    # w1= Wishlist(
-    #     )
-
-
-## To add data to the db:
-
-# example_data()
-# db.session.add_all([c1, c2, r1, t1, w1])
-# db.session.commit()
 
 # Helper functions
 
