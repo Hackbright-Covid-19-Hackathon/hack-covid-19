@@ -1,32 +1,58 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.js"
-      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-      crossorigin="anonymous"></script>
-    <script
-      src="https://unpkg.com/babel-standalone@6.26.0/babel.js"
-      crossorigin></script>
-    <script
-      src="https://unpkg.com/react@16/umd/react.development.js"
-      crossorigin></script>
-    <script
-      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
-      crossorigin></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/5.0.1/react-router-dom.js"
-      crossorigin></script>
-</head>
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/styles.css"/>
+
+{% if session.logged_in %}
+    <h2>{{session.user_full_name}}'s Wishlist</h2>
 
 <body>
-    <div id="wishlist">
-    </div>
+  <h2>Add to Wishlist</h2>
+  <div id="add_to_wishlist">
+    <form action="" method="post">
+      <label for="wishlist">Add to Wishlist:</label>
+      <textarea id="wishlist" name="wishlist" 
+                      rows="10" 
+                      cols="60"
+                      maxlength='1000'
+                      minlegth='5'
+                      placeholder="Add to wishlist.."
+                      ></textarea>
+      <input type="text" id="zipcode" name='zipcode'maxlength="5"></input>
+      <input type="submit"></input>
+    </form>
+  </div>
 
+  <!-- display wishlist after it's submitted -->
+  <!-- GET request to the server to get user's incomplete wishlists and status (inprogress/incomplete)-->
+  <div>
+    <h2>Active Wishlists: </h2>
+    <br>
+    <script>
+      // jinja for loop for displaying list of wishlists
+        $.get('/wishlist.json'), data, (res) => {
+            for (const wishlist of wishlists) {
+                const activeWishlists = (`
+                <div class="user-wishlists">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Wishlist #:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-    <script type="text/jsx" src="/hack-covid-19/templates/js/Wishlist.jsx"></script>
+                    </table>
+                </div>
+                        `)
+            }
+        }
+    </script>
+</div>
+  <!-- wishlist shows completed/not completed status -->
+  <!-- edit wishlist option -->
 
 </body>
-
-</html>
+{% endif %}
