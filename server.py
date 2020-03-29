@@ -21,21 +21,25 @@ def check_logged_in():
 def homepage():
     """Show the homepage."""
 
-    # index.html should have form for user to choose if they want
-    # to be asker or volunteer
     return render_template("index.html")
 
 
-@app.route("/", methods=["POST"])
+@app.route("/transit", methods=["POST"])
 def choose_user_type():
-    """Send user to their respoective volunteer or asker path."""
-    
+    """Send user to their respective volunteer or asker path."""
+ 
+    # index.html should have form for user to choose if they want
+    # to be asker or volunteer   
     user_type = request.form.get("user_type")
 
     # This should be volunteer or asker
     session["user_type"] = user_type
 
-    return redirect("/login")
+    if session["user_type"] = "asker":
+        return redirect(f"/asker-homepage/{user_id}")
+
+    if session["user_type"] = "volunteer":
+        return redirect(f"/volunteer-homepage/{user_id}")
 
 
 @app.route("/login")
@@ -130,32 +134,13 @@ def logout_user():
         flash("You're not currently logged in!")
         return redirect("/")
 
+
 @app.route("/asker-homepage"):
 def show_asker_homepage():
     """Show homepage for asker."""
     # Page should show active orders and connect to page to see status
     # something on page should link to route "/create-order"
-    return render_template("asker-homepage.html")
-
-
-@app.route("/create-order"):
-def show_order_form():
-    """Show order form."""
-    return render_template("order-form.html")
-
-
-@app.route("/create-order", methods=["POST"]):
-def save_order():
-    """Save order from form inputs."""
-    # Not sure how we plan to take info from order form
-    return redirect("/asker-homepage")
-
-
-@app.route("/volunteer-homepage"):
-def show_volunteer_homepage():
-    """Show homepage for volunteer."""
-    # Page should have volunteer enter their zipcode
-    return render_template("volunteer-homepage.html")
+    return render_template("asker.html")
 
 
 @app.route("/volunteer-homepage"):
@@ -182,14 +167,6 @@ def show_volunteer_options():
     return render_template("")
 
 
-""""-volunteer confirmed items (POST) 
-      -reveals asker's phone/email
-        - <contact each other>
-               -purchased confirm (POST) -status change
-                       -asker's address reveals (GET, POST) / <contact each other> REMOVED all communication for 
-                            -mark order completed
-"""
-
 @app.route("/create", methods=["POST"])
 def create_wishlist():
     """Get asker's wishlist and zipcode to save in database."""
@@ -202,7 +179,6 @@ def create_wishlist():
     print("200")
 
     return redirect("asker-homepage")
-
 
 
 @app.route("/incomplete")

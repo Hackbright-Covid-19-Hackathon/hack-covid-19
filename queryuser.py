@@ -54,6 +54,7 @@ def get_wishlist(user_id):
     status = this_user.item_progress
     # print(status)
     return {'wishlist': wishlist, 'status': status}
+    
 
 def update_status(user_id):
     """Query database for new status."""
