@@ -82,8 +82,11 @@ BestNeighbor was built by a team of recent software engineering academy grads. B
 
 - Nichole Reyes is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
 
-- Bahar Asefi
-Entrepreneur turned developer interested in backend and full stack engineering. 
+- Kimberly Chuc is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
+
+- Amber Chan is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
+
+- Bahar Asefi is an entrepreneur turned developer interested in backend and full stack engineering. 
 
 - Yichen D
 Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
@@ -91,9 +94,6 @@ Previously a pioneer full-time world language teacher, with extensive experience
 - Jessica Chuynh
 Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript
 
-- Kimberly Chuc is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
+- Lauren Maghran currently works in the environmental field, but is changing careers to software engineering. Lauren is a curious person, love learning, and appreciate clever solutions!
 
-- Lauren Maghran
-Currently works in the environmental field, but is changing careers to software engineering. Lauren is  a curious person, love learning, and appreciate clever solutions!
 
-- Amber Chan is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
