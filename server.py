@@ -152,6 +152,11 @@ def show_volunteer_homepage():
     
     return render_template("volunteer.html")
 
+@app.route("/about")
+def about():
+    """about page"""
+
+    return render_template("about.html")
 
 
 if __name__ == "__main__": 

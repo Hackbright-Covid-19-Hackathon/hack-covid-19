@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% if session.get('user_id') %}
+    <!-- Add Navbar from navbar.html file -->
+    {% include 'navbar.html' %}
+{% else %}
+    <!-- Add Navbar from navbar-pre-login.html file -->
+    {% include 'navbar-pre-login.html' %}
+{% endif %}
+
+{% block content %}
+
+{% endblock %}

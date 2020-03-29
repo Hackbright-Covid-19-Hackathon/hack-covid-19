@@ -2,9 +2,13 @@
 
 {% block title %}Homepage{% endblock %}
 
+<!-- Add Navbar from navbar-pre-login.html file -->
+{% include 'navbar-pre-login.html' %}
+
 {% block content %}
 
-<div id="homepage-box" class="mx-auto" style="width: 300px;">
+
+<div id="homepage-box" class="mx-auto" style="width: 350px;">
     <form action="/login">
         <div class="form-group">
             <label for="InputEmail1">Email address</label>
@@ -14,13 +18,13 @@
             <label for="InputPassword">Password</label>
             <input type="password" class="form-control" id="InputPassword">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn">Login</button>
     </form>
     <br>
     <form action="/register">
         <label for="InputRegisteration">Create Account</label>
         <br>
-        <button type="submit" class="btn btn-primary">Register</button>
+        <button type="submit" class="btn">Register</button>
     </form>
 </div>
 

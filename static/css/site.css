@@ -8,6 +8,7 @@ body {
 .navbar {
     background-color: #FCE181;
     color: #026670;
+    font-size: 19px;
 }
 
 .navbar-brand, .nav-link {
@@ -29,9 +30,21 @@ body {
     color: #33AD93;   
 }
 
-#homepage-box {
+#homepage-box, #register-box {
+    color: #026670;
+    font-weight: bold;
+    font-size: 20px;
     margin-top: 5rem;
     background-color: #9FEDD7;
-    margin: 2rem;
-    padding: 1rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.btn, button {
+    background-color: #BFB000;
+    color: #FFFEF0;
+}
+.btn:hover, button:hover {
+    background-color: #918600;
+    color: #E2E1D5;
 }
