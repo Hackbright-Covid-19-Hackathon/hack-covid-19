@@ -17,14 +17,14 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
-                        nullable = False)
-    user_full_name= db.Column(db.String(64), nullable=True)
+                        nullable=False)
+    user_full_name = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
     uzipcode = db.Column(db.String(15), nullable=True)
-    is_asker= db.Column(db.Boolean(), nullable= True)
-    is_vol= db.Column(db.Boolean(), nullable= True)
-    trust_score= db.Column(db.String(15), nullable=True)
+    is_asker = db.Column(db.Boolean(), nullable=True)
+    is_vol = db.Column(db.Boolean(), nullable=True)
+    trust_score = db.Column(db.String(15), nullable=True)
     
     # relationships
     # relationship in 'Trip' class
@@ -38,12 +38,12 @@ class User(db.Model):
 
 class Relational(db.Model):
 
-    __tablename__= "relations"
+    __tablename__ = "relations"
 
-    relation_id= db.Column(db.Integer, autoincrement=True, primary_key=True, 
+    relation_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
                         nullable = False)
-    r_asker_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
-    r_vol_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable= True)
+    r_asker_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
+    r_vol_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable= True)
     r_trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'), nullable= True)
 
     #relationships with the user table
@@ -51,8 +51,8 @@ class Relational(db.Model):
                                     foreign_keys="[Relational.r_asker_id]", 
                                     backref='relational_asker')
 
-    r_vol_id_rel = db.relationship('User', 
-                                    foreign_keys="[Relational.r_vol_id]", 
+    r_vol_id_rel = db.relationship('User',
+                                    foreign_keys="[Relational.r_vol_id]",
                                     backref='relational_volunteer')
 
 class Trip(db.Model):

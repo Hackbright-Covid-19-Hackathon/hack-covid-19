@@ -1,9 +1,9 @@
 """Covid19 Hackathon"""
 
 from jinja2 import StrictUndefined
-from flask import Flask, render_template, request, flash, redirect, session
+from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
-from model import connect_to_db, db, User
+from model import connect_to_db, db, User, Trip
 # from queryuser import add_wishlist, get_wishlist, update_status
 
 
@@ -158,6 +158,36 @@ def show_volunteer_homepage():
     
     return render_template("volunteer.html")
 
+@app.route('/trips.json')
+def trip_info():
+
+    trip = Trip.query.filter_by(session.user_id).first()
+
+    tripList = []
+
+    if trip:
+
+        tripList.append({
+            'trip_id': trip.trip_id,
+            'trip_progress': trip.item_progress
+        })
+
+        return jsonify(tripList)
+
+    else:
+        tripList.append({
+            'trip_id': None,
+            'trip_progress': None
+        })
+
+    return jsonify(tripList)
+
+
+@app.route("/about")
+def about():
+    """about page"""
+
+    return render_template("about.html")
 
 
 if __name__ == "__main__": 
