@@ -1,6 +1,8 @@
 """Models and database functions for covid19 hackathon project."""
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 db = SQLAlchemy()
 #db createdb volunteerdb
@@ -20,7 +22,7 @@ class User(db.Model):
                         nullable=False)
     user_full_name = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
-    password = db.Column(db.String(64), nullable=True)
+    password_hash = db.Column(db.String(100), nullable=False)
     uzipcode = db.Column(db.String(15), nullable=True)
     is_asker = db.Column(db.Boolean(), nullable=True)
     is_vol = db.Column(db.Boolean(), nullable=True)
@@ -35,6 +37,15 @@ class User(db.Model):
         """Provide helpful representation when printed."""
 
         return f"<User user_id={self.user_id} zipcode={self.uzipcode}>"
+
+    def set_password(self, password):
+        """Use werkzeug.security's password_hash to securely save password."""
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        """Check if password given matches hashed password."""
+        return check_password_hash(self.password_hash, password)
+
 
 class Relational(db.Model):
 
