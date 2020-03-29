@@ -152,6 +152,32 @@ def show_volunteer_homepage():
     
     return render_template("volunteer.html")
 
+@app.route('/trips.json')
+def trip_info():
+
+    trip = Trip.query.filter_by(session.user_id).first()
+
+    tripList = []
+
+    if trip:
+
+        tripList.append({
+            'trip_id': trip.trip_id,
+            'trip_progress': trip.item_progress
+        })
+
+    return jsonify(tripList)
+
+    else:
+        tripList.append({
+            'trip_id': None,
+            'trip_progress': None
+        })
+
+    return json(tripList)
+
+
+
 @app.route("/about")
 def about():
     """about page"""
