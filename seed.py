@@ -102,20 +102,48 @@ def add_users():
 def add_relationals():
     """add relationship data to the relational table."""
 
-    r1 = Relational(
-        r_asker_id= 1,
-        r_vol_id = 2,
-        r_trip_id = 1
-        # r_vol_id= 2, 
-        # r_trip_id = 1
-        )
+    # r1 = Relational(
+    #     r_asker_id= 1,
+    #     r_vol_id = 2,
+    #     r_trip_id = 1
+    #     # r_vol_id= 2, 
+    #     # r_trip_id = 1
+    #     )
 
-    # print(f'{r1.r_trip_id}')
+    # # print(f'{r1.r_trip_id}')
 
-    db.session.add(r1)
+    # db.session.add(r1)
 
-    db.session.commit()
-    print(f'created relationals {r1}')
+    # db.session.commit()
+    # print(f'created relationals {r1}')
+
+    """Load relationship information from seed file into the database.
+    working code.
+    """
+    print("trips")
+
+    # opening seed file with the csv library and csv reader. 
+    with open('seed_files/Relational_seed_v1.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+
+        for row in csv_reader:
+            if line_count == 0:
+                # print(f'Column names are {", ".join(row)}')
+                line_count += 1
+            else:
+
+                relation = Relational(
+                            r_asker_id= int(row[1]),
+                            r_vol_id = int(row[2]),
+                            r_trip_id = int(row[3])
+                            )
+
+                db.session.add(relation)
+                line_count += 1
+
+        db.session.commit()
+        print(f'created {line_count} relationals')
 
 
 def add_trips():
@@ -146,20 +174,8 @@ def add_trips():
             if line_count == 0:
                 # print(f'Column names are {", ".join(row)}')
                 line_count += 1
+            
             else:
-                # asker_seed = row[5]
-                # if asker_seed == "TRUE":
-                #     asker_seed = True
-                # elif asker_seed == "":
-                #     asker_seed = False
-                
-                # vol_seed = row[6]
-                # if vol_seed == "TRUE":
-                #         vol_seed = True
-                # elif vol_seed == "":
-                #     vol_seed = False
-
-
                 trip = Trip(
                         trip_zipcode= row[1],
                         user_id= int(row[2]),
@@ -199,11 +215,11 @@ if __name__ == "__main__":
     #load functions
     add_users()
     add_trips()
-    # add_relationals()
+    add_relationals()
 
     inform_tables_loaded()
 
-    print(f'ssers table: {User.query.all()}')
-    # print(f'trips table: {Trip.query.all()}')
-    # print(f'relationals table: {Relational.query.all()}')
-    # print(f'wishlist table: {Wishlist.query.all()}')
+    print(f'\n\nusers table: {User.query.all()}')
+    print(f'\n\ntrips table: {Trip.query.all()}')
+    print(f'\n\nrelationals table: {Relational.query.all()}')
+    print(f'\n\nwishlist table: {Wishlist.query.all()}')
