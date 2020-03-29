@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/styles.css"/>
+
+<h2>Wishlists</h2>
+<br>
+
+<div>
+    <script>
+        $.get('/wishlistInfo.json'), data, (res) => {
+            for (const wishlist of res) {(`
+                <div class="list-group">
+                    <a href="/wishlists/{wishlist_id}" class="list-group-item list-group-item-action">${wishlist.wishlist_id}(${wishlist.wishlist_progress})</a>
+            `);
+        }
+        }
+    </script>
+</div>
