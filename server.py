@@ -3,10 +3,8 @@
 from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
-from model import connect_to_db, db, User, Trip
-# from queryuser import add_wishlist, get_wishlist, update_status
-
-
+from model import connect_to_db, db, User, Relational, Trip, Wishlist
+from queryuser import add_wishlist, get_wishlist, update_status
 
 app = Flask(__name__)
 
@@ -14,10 +12,11 @@ app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
 
 
-def check_logged_in():
-    if session.get("user_id") == None:
-        flash("You're not currently logged in!")
-        return redirect("/login")
+# def check_logged_in():
+#     if session.get("user_id") == None:
+#         flash("You're not currently logged in!")
+#         return redirect("/login")
+
 
 
 @app.route("/")
@@ -27,21 +26,26 @@ def homepage():
     return render_template("index.html")
 
 
-@app.route("/login", methods=["POST"])
+@app.route("/user")
+def display_user_type():
+    """Show a transit page for user to choose to be volunteer or create wishlist."""
+
+    return render_template("user.html")
+
+
+@app.route("/login")
 def login_page():
     """Log in user and return to homepage."""
 
     username = request.form.get("username")
     password = request.form.get("password")
 
-    user_type = session["user_type"]
-
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(user_full_name=username).first()
     if user:
         if user.check_password(password):
             session["user_id"] = user.user_id
             flash("Successfully logged in!")
-            return redirect(f"/user-homepage/{user_id}")
+            return redirect("/user")
 
         else:
             flash("Incorrect password, please try again.")
@@ -62,28 +66,23 @@ def show_registration_page():
 def register_user():
     """Create account for user by adding them to database."""
 
-    fname = request.form.get("fname")
-    lname = request.form.get("lname")
-    form_phone = request.form.get("phone")
-    if form_phone:
-        phone_parts = form_phone.split("-")
-        phone = "+1" + phone_parts[0] + phone_parts[1] + phone_parts[2]
-    else:
-        phone = None
+    email = request.form.get("email")
     username = request.form.get("username")
     password = request.form.get("password")
-    user_type = session["user_type"]
+    zipcode = request.form.get("zipcode")
+    
     if not User.query.filter_by(username=username).all():
-        new_user = User(fname=fname, lname=lname, phone=phone, username=username)
-        # This is a method Amber set in her model.py to hash passwords
+        new_user = User(email=email, 
+                        user_full_name=username, 
+                        uzipcode=zipcode)
+
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
         session["user_id"] = new_user.user_id
         flash("Successfully created an account!")
 
-        return redirect(f"/user/{user_id}")
-
+        return redirect("/user")
 
     else:
         flash("User already exists! Try logging in instead.")
@@ -103,11 +102,11 @@ def logout_user():
         return redirect("/")
 
 
-@app.route("/user-homepage")
-def show_user_homepage():
-    """ Show user homepage."""
+# @app.route("/user-homepage")
+# def show_user_homepage():
+#     """ Show user homepage."""
 
-    return render_template("user.html")
+#     return render_template("volunteer.html")
 
 @app.route("/asker-homepage")
 def show_asker_homepage():
@@ -116,11 +115,29 @@ def show_asker_homepage():
     return render_template("asker.html")
 
 
-@app.route("/create")
-def show_order_form():
-    """Show order form."""
+# @app.route("/volunteer-homepage")
+# def show_volunteer_homepage():
+#     """Show homepage for volunteer."""
+# <<<<<<< HEAD
+#     # Page should show active orders they signed up for
+#     # Page should link to form for volunteer to enter their zipcode
+#     return render_template("volunteer-homepage.html")
 
-    return redirect("/asker-homepage")
+
+# @app.route("/volunteer-signup")
+# def show_volunteer_signup():
+#     """Show form for volunteer to enter zipcode"""
+#     # Page should have volunteer enter their zipcode
+#     return render_template("volunteer-signup.html")
+
+
+# # For these routes, not sure how to write since I don't know how
+# # Backend team plans to implement these?
+# @app.route("/volunteer-signup", methods=["POST"])
+# def show_volunteer_options():
+#     """Show order options for volunteer to sign up for."""
+#     # Page should have a checkbox list of orders volunteers can sign up for
+#     return render_template("")
 
 
 @app.route("/create", methods=["POST"])
@@ -130,27 +147,56 @@ def create_wishlist():
     new_wishlist = request.args.get('wishlist')
     zipcode = request.args.get('zipcode')
     asker = session.get("user_id")
-    update_database(new_wishlist, zipcode, asker)
+    status = "incomplete"
+
+    # if not Trip.query.filter_by(trip=username).all():
+    new_trip = Trip(user_id=asker, 
+                    wishlist=new_wishlist, 
+                    trip_zipcode=zipcode,
+                    item_progress=status)
+
+    db.session.add(new_trip)
+    db.session.commit()
+    session["trip_id"] = new_trip.trip_id
+    flash("Successfully created a wishlist!")
+
     print("200")
 
-    return redirect("asker-homepage")
+    return redirect("/asker-homepage")
+    
 
 @app.route("/incomplete")
 def view_wishlist():
     """Display wishlist."""
 
     asker = session.get("user_id")
+
     incomplete_order = get_wishlist(asker)
 
     return jsonify(incomplete_order)
 
 
-
-@app.route("/volunteer-homepage")
-def show_volunteer_homepage():
-    """Show homepage for volunteer."""
+@app.route("/inprogress")
+def status_in_progress():
+    """Update wishlist status to in progress."""
     
-    return render_template("volunteer.html")
+    asker = session.get("user_id")
+
+    new_status = update_status(asker)
+
+    return new_status
+
+
+@app.route("/completed")
+def status_completed():
+    """Update wishlist status to completed."""
+
+    asker = session.get("user_id")
+
+    new_status = update_status(asker)
+
+    return new_status
+
 
 @app.route('/trips.json')
 def trip_info():
