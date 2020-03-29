@@ -6,16 +6,11 @@
 <div id="register-box" class="mx-auto" style="width: 400px;">
     <h3>Create an Account!</h3>
     <form action="/register" method="POST">
-        <input name="fname" placeholder="First Name*" required><br><br>
-        <input name="lname" placeholder="Last Name*" required><br><br>
-        <input type="tel" name="phone"
-           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-           placeholder="Phone: 123-456-789"><br><br>
-        <input name="username" placeholder="User Name*" required><br><br>
-        <input name="password" type="password" placeholder="Password*" required>
-        <br>
-         * Required
-         <br>
+        <input name="email" placeholder="Email*" required><br>
+        <input name="zipcode" placeholder="Zip Code*" required><br>
+        <input name="username" placeholder="User Name*" required><br>
+        <input name="password" type="password" placeholder="Password*" required><br>
+        &nbsp; &nbsp; * Required<br>
         <button type="submit">Create Account</button>
     </form>
 </div>

@@ -4,27 +4,41 @@
 
 <link rel="stylesheet" href="/static/css/styles.css"/>
 
-{% if session.logged_in %}
-    <h2>{{session.user_full_name}}'s Dashboard</h2>
 
+<h2>{{session.user_full_name}}'s Dashboard</h2>
+
+<br>
+<div>
+    <h2>Active Orders: </h2>
     <br>
-    <div>
-        <h2>Active Orders: </h2>
-        <br>
-        <script>
-            $.get('/wishlist.json'), data, (res) => {
-                for (const wishlist of wishlists) {
-                    const activeOrders = (`
-                    <div class="wishlist-progress">
-                        <table class="table">
-                            <thead>
+    <script>
+        $.get('/trips.json'), data, (res) => {
+            for (const trip of trips) {(`
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order #:</th>
+                                <th>Status:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each trip}}
                                 <tr>
-                                    <th scope="col">Order #:</th>
-                                    <th scope="col">Status:</th>
-                            </)
-                }
+                                    <td>${trip_id}</td>
+                                    <td>${trip_progress}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>`);
             }
-        </script>
-    </div>
-{% endif %}
+        }
+    </script>
+</div>
+<br>
 
+<button type="button" action="/wishlists.html" class="btn btn-primary">View available wishlists</button>
+<br>
+
+{% endblock %}
