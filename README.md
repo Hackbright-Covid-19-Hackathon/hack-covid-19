@@ -78,7 +78,7 @@ The following features are planned for implementation:
 
 **BestNeighbor** was built by a team of recent software engineering academy grads. Below are their profiles:
 
-- [**Johanna Kinsler**](https://www.linkedin.com/in/johanna-kinsler-76562463/) is a former automotive engineer and project manager turned software engineer. She is passionate about using data in decision making. She is looking for work in Full stack, back end, and data engineering.
+- [**Johanna Kinsler**](https://www.linkedin.com/in/johanna-kinsler-76562463/) is a former automotive engineer and project manager turned software engineer. She is passionate about using data in decision making. She is looking for work in full stack, back end, and data engineering.
 
 - [**Nichole Reyes**](https://www.linkedin.com/in/nicholereyes/) is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
 
