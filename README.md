@@ -82,7 +82,7 @@ The following features are planned for implementation:
 
 - [**Nichole Reyes**](https://www.linkedin.com/in/nicholereyes/) is a software engineer with 5 years of mechanical and project engineering experience. She's now in search of software engineering opportunities in a mission driven company. 
 
-- [**Kimberly Chuc**](https://www.linkedin.com/in/kimberlymchuc/) is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer’ 
+- [**Kimberly Chuc**](https://www.linkedin.com/in/kimberlymchuc/) is a former EMT turned software engineer. Her passion for problem solving and helping others inspires her to code, creating projects that make difficult tasks in life a lot easier. She looks forward to contributing her skills to her next role as a full stack engineer. 
 
 - [**Amber Chan**](https://www.linkedin.com/in/amber-chan-38634396) is a software engineer with former recruiting and accounting experience. She’s excited to integrate her interpersonal and detail oriented skills from her previous roles in her next job! 
 
@@ -92,7 +92,7 @@ The following features are planned for implementation:
 Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
 
 - [**Jessica Chuynh**](https://www.linkedin.com/in/jessicachauhuynh/)
-Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript
+Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript.
 
 - [**Lauren Maghran**](https://www.linkedin.com/in/lauren-maghran/) currently works in the environmental field, but is changing careers to software engineering. Lauren is a curious person, love learning, and appreciate clever solutions!
 
