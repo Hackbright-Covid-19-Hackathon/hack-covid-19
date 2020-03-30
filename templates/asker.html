@@ -38,7 +38,7 @@
         console.log('0');
         $.get('/incomplete', (res) => {
           for (const trip of res.trips) {
-            console.log(res);
+            console.log(trip);
             const activeWishlist = $(`
             <div class="user-wishlists">
               <table class="user-wishlists">
@@ -50,8 +50,8 @@
                   </thead>
                   <tbody>
                       <tr>
-                          <th scope="col">${res.wishlist}</th>
-                          <th scope="col">${res.status}</th>
+                          <th scope="col">${trip.wishlist}</th>
+                          <th scope="col">${trip.status}</th>
                       </tr>
                   </tbody>
               </table>
@@ -68,9 +68,7 @@
   <!-- edit wishlist option -->
 
 </body>
-<<<<<<< HEAD
+
 {# {% endif %} #}
-=======
-{% endif %}
->>>>>>> d3df169311a9d1f83d180dd9c82e27b0f70ad9b2
+
 {% endblock %}

@@ -4,7 +4,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
-from queryuser import add_wishlist, get_wishlist, update_status
+from queryuser import add_wishlist, get_wishlist, update_status, get_wishlists
 from query_volunteer import vol_update_status
 
 
@@ -138,7 +138,7 @@ def asker_view_wishlist():
     
     asker = session.get("user_id")
     print(asker)
-    incomplete_order = get_wishlist(asker)
+    incomplete_order = get_wishlists(asker)
     print(incomplete_order)
     return jsonify(incomplete_order)
 
