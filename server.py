@@ -198,12 +198,6 @@ def trip_info():
     return jsonify(tripList)
 
 
-@app.route("/volunteer-homepage")
-def show_volunteer_homepage():
-    """Show homepage for volunteer and displays active orders."""
-    return render_template("volunteer.html")
-
-
 @app.route('/volunteer-all-wishlist')
 def display_asker_wishlists():
     """Displays all avaliable wishlists"""

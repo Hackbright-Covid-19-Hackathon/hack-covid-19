@@ -38,8 +38,9 @@
         console.log('0');
         $.get('/incomplete', (res) => {
           for (const trip of res.trips) {
-            console.log(trip);
-            const activeWishlist = $(`
+            // console.log(trip);
+            const order = $(`
+
             <div class="user-wishlists">
               <table class="user-wishlists">
                   <thead>
@@ -57,8 +58,9 @@
               </table>
             </div>
                     `)
+            console.log(order)
           }; // end for
-          $('#ineed').append(activeWishlist);
+          $('#ineed').append(order);
         }); // end get
       }); // end loading document     
 
