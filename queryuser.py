@@ -45,6 +45,24 @@ def add_wishlist(new_wishlist, zipcode, asker):
 #     return 'New wishlist created.'
 
 
+def get_wishlists(user_id):
+    """Query database for this user's wishlists and status."""
+
+    trips = Trip.query.filter_by(user_id=user_id).all()
+    print(trips)
+
+    wishlistLists_by_user_id = []
+    for trip in trips:
+        print(trip)
+        wishlistLists_by_user_id.append({
+            'wishlist_id': trip.trip_id,
+            'status': trip.item_progress,
+            'wishlist': trip.wishlist
+        })
+
+    return {'trips': wishlistLists_by_user_id}
+
+
 def get_wishlist(user_id):
     """Query database for wishlist and status."""
 
