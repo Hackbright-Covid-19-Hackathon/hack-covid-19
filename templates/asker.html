@@ -41,17 +41,18 @@
             let order = $(`
 
             <div class="user-wishlists">
-              <table class="user-wishlists">
+              <table class="user-wishlists table">
                   <thead>
                       <tr>
-                          <th scope="col">Wishlist #: ${trip.wishlist_id}</th>
+                          <th scope="col">Wishlist: # ${trip.wishlist_id}</th>
                           <th scope="col">Status:</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr>
-                          <th scope="col">${trip.wishlist}</th>
-                          <th scope="col">${trip.status}</th>
+                          <td scope="col">${trip.wishlist}</td>
+                          <br>
+                          <td scope="col">${trip.status}</td>
                       </tr>
                   </tbody>
               </table>

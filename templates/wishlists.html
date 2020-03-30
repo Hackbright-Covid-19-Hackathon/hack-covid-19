@@ -3,13 +3,31 @@
 {% include 'navbar.html' %}
 {% block content %}
 
+<div id="homepage-box" class="mx-auto" style="width: 400px;">
+    <h2>Wishlists</h2>
+    <br>
 
-<h2>Wishlists</h2>
-<br>
+    <div class="container container-fluid" id="all-wishlists">
+    </div>
 
-<div class="container container-fluid" id="all-wishlists">
+    <script>
+        $.get('/wishlistInfo.json', (res) => {
+            console.log(res);
+            for (const wishlist of res) {
+                const wishlist_id = wishlist.wishlist_id;
+                const wishlist_progress = wishlist.wishlist_progress;
+
+                console.log(wishlist_id)
+                console.log(wishlist_progress)
+
+                $('all-wishlists').append(`
+                <div class="list-group">
+                    <a href="/wishlists/{wishlist_id}" class="list-group-item list-group-item-action">${wishlist_id}(${wishlist_progress})</a>
+            `);
+        };
+        });
+    </script>
 </div>
-
 <script>
     $.get('/wishlistInfo.json', (res) => {
         console.log(res);
@@ -32,6 +50,5 @@
     });
 
 </script>
-
 
 {% endblock %}
