@@ -18,6 +18,15 @@
 
     {% block header %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+        {% for message in messages %}
+          <div>{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
   </head>
   <body>
     <!-- This is where the main content goes. -->

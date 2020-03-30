@@ -5,6 +5,8 @@ from flask import Flask, render_template, request, flash, redirect, session, jso
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
 from queryuser import add_wishlist, get_wishlist, update_status
+from query_volunteer import vol_update_status
+
 
 app = Flask(__name__)
 
@@ -119,7 +121,6 @@ def create_wishlist():
     asker = session.get("user_id")
     status = "incomplete"
 
-    # if not Trip.query.filter_by(trip=username).all():
     new_trip = Trip(user_id=asker, 
                     wishlist=new_wishlist, 
                     trip_zipcode=zipcode,
@@ -149,7 +150,7 @@ def asker_view_wishlist():
 @app.route("/inprogress")
 def status_in_progress():
     """Update wishlist status to in progress."""
-    
+
     asker = session.get("user_id")
 
     new_status = update_status(asker)
@@ -168,8 +169,16 @@ def status_completed():
     return new_status
 
 
+@app.route("/volunteer-homepage")
+def show_volunteer_homepage():
+    """Show homepage for volunteer and displays active orders."""
+
+    return render_template("volunteer.html")
+
+
 @app.route('/trips.json')
 def trip_info():
+    """Retrieving status of asker's wishlist"""
 
     trip = Trip.query.filter_by(session.user_id).first()
 
@@ -202,6 +211,7 @@ def show_volunteer_homepage():
 @app.route('/volunteer-all-wishlist')
 def display_asker_wishlists():
     """Displays all avaliable wishlists"""
+
     return render_template("wishlists.html")
 
 
@@ -209,51 +219,65 @@ def display_asker_wishlists():
 def viewwishlists():
     """ """
     trip = Trip.query.filter_by(session.uzipcode, item_progress='incomplete').all()
+
     wishlistList = []
     if trip:
         wishlistList.append({
             'wishlist_id': trip.trip_id,
             'wishlist_progress': trip.item_progress,
             'wishlist': trip.wishlist
-            # shows number of items on list before clicking on wishlist
         })
+
         return jsonify(wishlistList)
+
     else:
         wishlistList.append({
             'wishlist_id': None,
             'Wishlist_progress': None,
             'wishlist': None
         })
+
     return jsonify(wishlistList)
 
 
 @app.route('/volunteer-wishlist/<int:trip_id>')
-def display_asker_wishlist():
+def display_asker_single_wishlist():
     """Displays selected wishlist (single)"""
+
     return render_template("single_wishlist.html")
 
 
 @app.route("/single_wishlist.json")
 def vol_view_wishlist():
-    """ """
+    """Display a single selected wishlist"""
+
     trip = Trip.query.filter_by(trip_id).first()
+
     session['wishlist_id'] = trip.trip_id
+
     trip_info = {
         'wishlist_id': trip.trip_id,
         'wishlist_progress': trip.item_progress,
         'wishlist': trip.wishlist
         }
+
     return jsonify(trip_info)
 
 
 @app.route("/inprogress", methods=["POST"])
 def vol_status_in_progress():
     """Update wishlist status to in progress."""
+
     volunteer = session.get("wishlist_id")
+
     current_status = 'In Progress'
+
     trip = Trip.query.filter_by(trip_id).first()
+
     trip.item_progress = current_status
+
     new_status = vol_update_status(volunteer)
+
     db.session.commit()
     return new_status
 
@@ -261,12 +285,20 @@ def vol_status_in_progress():
 @app.route("/completed", methods=["POST"])
 def vol_status_completed():
     """Update wishlist status to completed."""
+
+
     volunteer = session.get("wishlist_id")
+
     current_status = 'Completed!'
+
     trip = Trip.query.filter_by(trip_id).first()
+
     trip.item_progress = current_status
+
     new_status = vol_update_status(volunteer)
+
     db.session.commit()
+    
     return new_status
 
 
