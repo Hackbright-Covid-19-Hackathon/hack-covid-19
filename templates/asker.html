@@ -20,7 +20,7 @@
                       minlegth='5'
                       placeholder="Add to wishlist.."
                       ></textarea>
-      <input type="text" id="zipcode" name='zipcode'maxlength="5"></input>
+      <input type="text" id="zipcode" name='zipcode' maxlength="5"></input>
       <button type="submit" id="create-wishlist">Create Wishlist</button>
     </form>
   </div>
@@ -40,25 +40,25 @@
         console.log('0');
         $.get('/incomplete', (res) => {
           console.log(res);
-          // const activeWishlist = (`
-          // <div class="user-wishlists">
-          //   <table class="user-wishlists">
-          //       <thead>
-          //           <tr>
-          //               <th scope="col">Wishlist #:</th>
-          //               <th scope="col">Status:</th>
-          //           </tr>
-          //       </thead>
-          //       <tbody>
-          //           <tr>
-          //               <th scope="col">${res.wishlist}</th>
-          //               <th scope="col">${res.status}</th>
-          //           </tr>
-          //       </tbody>
-          //   </table>
-          // </div>
-          //         `)
-          // {activeWishlist} 
+          const activeWishlist = (`
+          <div class="user-wishlists">
+            <table class="user-wishlists">
+                <thead>
+                    <tr>
+                        <th scope="col">Wishlist #:</th>
+                        <th scope="col">Status:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="col">${res.wishlist}</th>
+                        <th scope="col">${res.status}</th>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+                  `)
+          {activeWishlist} 
         }); // end get
       }); // end loading document     
 

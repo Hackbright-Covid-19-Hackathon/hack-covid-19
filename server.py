@@ -112,9 +112,10 @@ def show_asker_homepage():
 @app.route("/create", methods=["POST"])
 def create_wishlist():
     """Get asker's wishlist and zipcode to save in database."""
-
-    new_wishlist = request.args.get('wishlist')
-    zipcode = request.args.get('zipcode')
+    print('000')
+    new_wishlist = request.form.get('wishlist')
+    print(new_wishlist)
+    zipcode = request.form.get('zipcode')
     asker = session.get("user_id")
     status = "incomplete"
 
@@ -123,7 +124,7 @@ def create_wishlist():
                     wishlist=new_wishlist, 
                     trip_zipcode=zipcode,
                     item_progress=status)
-
+    print(new_trip)
     db.session.add(new_trip)
     db.session.commit()
     session["trip_id"] = new_trip.trip_id
