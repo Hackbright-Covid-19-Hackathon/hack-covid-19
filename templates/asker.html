@@ -30,17 +30,15 @@
   <div>
     <h2>Active Wishlist: </h2>
     <br>
+    <div id="ineed"></div>
     <script>
       "use strict";
-        // $('#add_to_wishlist').on('submit', (evt) => {
-        //   evt.preventDefault();
-        //   console.log('0');
-        // }); // end submit
+
       $(document).ready( () => {
         console.log('0');
         $.get('/incomplete', (res) => {
           console.log(res);
-          const activeWishlist = (`
+          const activeWishlist = $(`
           <div class="user-wishlists">
             <table class="user-wishlists">
                 <thead>
@@ -58,7 +56,7 @@
             </table>
           </div>
                   `)
-          {activeWishlist} 
+          $('#ineed').append(activeWishlist);
         }); // end get
       }); // end loading document     
 
