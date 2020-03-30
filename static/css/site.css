@@ -64,3 +64,14 @@ body {
     font-weight: bold;
     font-size: 20px;
 } 
+
+.flashes {
+    background-color: rgba(252, 225, 129, 0.9);
+    color: #026670;
+    width: 40rem;
+    padding: 1rem;
+    margin: 2rem;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
