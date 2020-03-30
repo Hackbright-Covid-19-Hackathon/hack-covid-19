@@ -37,25 +37,27 @@
       $(document).ready( () => {
         console.log('0');
         $.get('/incomplete', (res) => {
-          console.log(res);
-          const activeWishlist = $(`
-          <div class="user-wishlists">
-            <table class="user-wishlists">
-                <thead>
-                    <tr>
-                        <th scope="col">Wishlist #:</th>
-                        <th scope="col">Status:</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="col">${res.wishlist}</th>
-                        <th scope="col">${res.status}</th>
-                    </tr>
-                </tbody>
-            </table>
-          </div>
-                  `)
+          for (const trip of res.trips) {
+            console.log(res);
+            const activeWishlist = $(`
+            <div class="user-wishlists">
+              <table class="user-wishlists">
+                  <thead>
+                      <tr>
+                          <th scope="col">Wishlist #:</th>
+                          <th scope="col">Status:</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="col">${res.wishlist}</th>
+                          <th scope="col">${res.status}</th>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+                    `)
+          }; // end for
           $('#ineed').append(activeWishlist);
         }); // end get
       }); // end loading document     
