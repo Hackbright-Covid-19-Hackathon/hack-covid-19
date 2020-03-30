@@ -7,6 +7,8 @@
 <b><h2>Wishlist Items:</h2></b>
 
 <script>
+    "use strict";
+
     $.get('/single_wishlist.json', data, (res) => {
         const singleWishlist =(`
         <div class="single-wishlist">
@@ -20,68 +22,72 @@
 
     {singleWishlist}
 
-
-    $('#inprogressbtn').on('click', (evt) => {
+    $('#inprogressbtn').on('submit', (evt) => {
         evt.preventDefault();
+        console.log('0');
+        }); // end submit
 
-        $.post('/inprogress'), data, (res) => {
-            const inprogressWishlist = (`
-            <div class="user-wishlists">
-              <table class="user-wishlists">
-                  <thead>
-                      <tr>
-                          <th scope="col">Wishlist #:</th>
-                          <th scope="col">Status:</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <th scope="col">${res.wishlist}</th>
-                          <th scope="col">${res.status}</th>
-                      </tr>
-                  </tbody>
-              </table>
-            </div>
-                    `);
-        }
-
-        $('#inprogressbtn').toggle();
-
-        {inprogressWishlist}
-
-    $('#completedbtn').on('click', (evt) => {
-        evt.preventDefault();
-
-        $.post('/completed'), data, (res) => {
-            const completedWishllist = (`
-            <div class="user-wishlists">
+        $(document).ready( () => {
+            console.log('0');
+            $.get('/inprogress', (res) => {
+              console.log(res);
+              const inprogressWishlist = (`
+              <div class="user-wishlists">
                 <table class="user-wishlists">
-                    <thead>
-                        <tr>
-                            <th scope="col">Wishlist #:</th>
-                            <th scope="col">Status:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="col">${res.wishlist}</th>
-                            <th scope="col">${res.status}</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                    `);
-        }
+                     <thead>
+                         <tr>
+                             <th scope="col">Wishlist #:</th>
+                             <th scope="col">Status:</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <th scope="col">${res.wishlist}</th>
+                             <th scope="col">${res.status}</th>
+                         </tr>
+                     </tbody>
+                 </table>
+               </div>
+                       `)
+               {inprogressWishlist}
+            }); // end get
+          }); // end loading document
 
-        $('#completedbtn').toggle();
+    $('#completedbtn').on('submit', (evt) => {
+        evt.preventDefault();
+        console.log('0');
+        }); // end submit
 
-        {completedWishllist}
-    });
+        $(document).ready( () => {
+            console.log('0');
+            $.get('/completed', (res) => {
+                console.log(res);
+                const completedWishllist = (`
+                <div class="user-wishlists">
+                <table class="user-wishlists">
+                        <thead>
+                            <tr>
+                                <th scope="col">Wishlist #:</th>
+                                <th scope="col">Status:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="col">${res.wishlist}</th>
+                                <th scope="col">${res.status}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                        `)
+                {completedWishllist}
+            }); // end get
+            }); // end loading document
 
 </script>
 
 <br>
-<button type="button" action="/inprogress" id='inprogressbtn' class="btn btn-primary">Choose this wishlist</button>
+<button type="submit" id="inprogressbtn">Volunteer for this wishlist</button>
 <br>
 <b>Click this button once the wishlist items have been delivered: </b>
-<button type="button" action="/completed" id='completedbtn' class="btn btn-primary">Completed</button>
+<button type="submit" id="completedbtn">Wishlist Completed!</button>
