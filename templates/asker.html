@@ -5,10 +5,8 @@
 
 {% block content %}
 
-{# {% if session.logged_in %}
-    <h2>{{session.user_full_name}}'s Wishlist</h2> #}
-
 <body>
+  <div id="asker-homepage" class="mx-auto text-justify" style="width: 700px;">
   <h2>Add to Wishlist</h2>
   <div id="add_to_wishlist">
     <form action="/create" method="post">
@@ -18,9 +16,10 @@
                       cols="60"
                       maxlength='1000'
                       minlegth='5'
-                      placeholder="Add to wishlist.."
                       ></textarea>
-      <input type="text" id="zipcode" name='zipcode' maxlength="5"></input>
+      <label for="inputZip">Zipcode</label>
+      <input name="zipcode" type="text" class="form-control" id="inputZip" placeholder="Zip Code*" name='zipcode' maxlength="5" style="width: 100px;"></input>
+      <br>
       <button type="submit" id="create-wishlist">Create Wishlist</button>
     </form>
   </div>
@@ -38,27 +37,30 @@
         console.log('0');
         $.get('/incomplete', (res) => {
           for (const trip of res.trips) {
-            console.log(res);
-            const activeWishlist = $(`
+            console.log(trip);
+            let order = $(`
+
             <div class="user-wishlists">
               <table class="user-wishlists">
                   <thead>
                       <tr>
-                          <th scope="col">Wishlist #:</th>
+                          <th scope="col">Wishlist #: ${trip.wishlist_id}</th>
                           <th scope="col">Status:</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr>
-                          <th scope="col">${res.wishlist}</th>
-                          <th scope="col">${res.status}</th>
+                          <th scope="col">${trip.wishlist}</th>
+                          <th scope="col">${trip.status}</th>
                       </tr>
                   </tbody>
               </table>
             </div>
-                    `)
+                    `);
+            // console.log(order);
+            $('#ineed').append(order);
           }; // end for
-          $('#ineed').append(activeWishlist);
+          
         }); // end get
       }); // end loading document     
 
@@ -68,9 +70,5 @@
   <!-- edit wishlist option -->
 
 </body>
-<<<<<<< HEAD
-{# {% endif %} #}
-=======
-{% endif %}
->>>>>>> d3df169311a9d1f83d180dd9c82e27b0f70ad9b2
+
 {% endblock %}

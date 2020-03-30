@@ -4,7 +4,7 @@ from jinja2 import StrictUndefined
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db, db, User, Relational, Trip, Wishlist
-from queryuser import add_wishlist, get_wishlist, update_status
+from queryuser import add_wishlist, get_wishlist, update_status, get_wishlists
 from query_volunteer import vol_update_status
 
 
@@ -12,13 +12,6 @@ app = Flask(__name__)
 
 app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
-
-
-# def check_logged_in():
-#     if session.get("user_id") == None:
-#         flash("You're not currently logged in!")
-#         return redirect("/login")
-
 
 
 @app.route("/")
@@ -42,7 +35,6 @@ def login_page():
     email = request.form.get("email")
     print(f'\n\nemail: {email}')
     password = request.form.get("password")
-    print(f'\n\npassword: {password}')
 
     user = User.query.filter_by(email=email).first()
 
@@ -107,33 +99,11 @@ def logout_user():
         return redirect("/")
 
 
-# @app.route("/user-homepage")
-# def show_user_homepage():
-#     """ Show user homepage."""
-
-#     return render_template("volunteer.html")
-
 @app.route("/asker-homepage")
 def show_asker_homepage():
     """Show homepage for asker."""
     
     return render_template("asker.html")
-
-
-# @app.route("/volunteer-signup")
-# def show_volunteer_signup():
-#     """Show form for volunteer to enter zipcode"""
-#     # Page should have volunteer enter their zipcode
-#     return render_template("volunteer-signup.html")
-
-
-# # For these routes, not sure how to write since I don't know how
-# # Backend team plans to implement these?
-# @app.route("/volunteer-signup", methods=["POST"])
-# def show_volunteer_options():
-#     """Show order options for volunteer to sign up for."""
-#     # Page should have a checkbox list of orders volunteers can sign up for
-#     return render_template("")
 
 
 @app.route("/create", methods=["POST"])
@@ -167,8 +137,9 @@ def asker_view_wishlist():
     """Display wishlist."""
 
     asker = session.get("user_id")
-
-    incomplete_order = get_wishlist(asker)
+    print(asker)
+    incomplete_order = get_wishlists(asker)
+    print(incomplete_order)
 
     return jsonify(incomplete_order)
 
@@ -341,7 +312,7 @@ def about():
 
 if __name__ == "__main__": 
 
-    app.debug = False #pragma: no cover
+    app.debug = True #pragma: no cover
     connect_to_db(app) #pragma: no cover
     DebugToolbarExtension(app) #pragma: no cover
     app.run(host="0.0.0.0") #pragma: no cover
