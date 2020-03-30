@@ -309,11 +309,7 @@ def vol_status_in_progress():
 @app.route("/completed", methods=["POST"])
 def vol_status_completed():
     """Update wishlist status to completed."""
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> a17dac4e157d8191202987353cd2c8e9bd563941
     volunteer = session.get("wishlist_id")
     
     current_status = 'Completed!'
