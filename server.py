@@ -210,17 +210,25 @@ def show_volunteer_homepage():
 def trip_info():
     """Retrieving status of asker's wishlist"""
 
-    trip = Trip.query.filter_by(session.user_id).first()
+    volunteer = session.get('user_id')
+
+    trip = db.session.query(Trip.trip_id, Trip.item_progress)\
+            .join(Relational, Trip.trip_id == Relational.r_trip_id)\
+            .filter(Relational.r_vol_id == volunteer).all()
+    
+    print("\n\n")
+    print(f"trip{trip}")
 
     tripList = []
 
     if trip:
 
         tripList.append({
-            'trip_id': trip.trip_id,
-            'trip_progress': trip.item_progress
+            'trip_id': trip[0][0],
+            'trip_progress': trip[0][1]
         })
 
+        print(tripList)
         return jsonify(tripList)
 
     else:

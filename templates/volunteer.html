@@ -2,43 +2,44 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="/static/css/styles.css"/>
-
-
 <br>
 <div>
     <h2>Active Orders: </h2>
     <br>
+    <div class="container container-fluid" id="wishlists">
+    </div>
+
     <script>
         $.get('/trips.json', (res) => {
-            for (const trip of res.trips) {
-              console.log(res);
-              const activeWishlist = $(`
-              <div class="user-wishlists">
-                <table class="user-wishlists">
-                    <thead>
-                        <tr>
-                            <th scope="col">Wishlist #:</th>
-                            <th scope="col">Status:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="col">${res.wishlist}</th>
-                            <th scope="col">${res.status}</th>
-                        </tr>
-                    </tbody>
-                </table>
-              </div>
-                      `)
+            console.log(res);
+            for (const trip of res) {
+                const trip_id = trip.trip_id;
+                const trip_progress = trip.trip_progress;
+
+                console.log(trip_id)
+                console.log(trip_progress)
+
+                $('#wishlists').append(`
+                    <div class="row" id="user-wishlists">
+                        <p>
+                            ${trip_id}
+                        </p>
+                        <br>
+                        <p>
+                            ${trip_progress}
+                        </p>
+                    </div>
+                            `)
+              
             }; // end for
-            $('#ineed').append(activeWishlist);
           }); // end get
+
     </script>
 </div>
 <br>
 
-<button type="button" action="/volunteer-all-wishlist" class="btn btn-primary">View available wishlists</button>
+<a class="btn btn-lg" href="/volunteer-all-wishlist" role="button">View all available wishlists</a><br>
+<!-- <button type="button" action="/volunteer-all-wishlist" class="btn btn-primary">View available wishlists</button> -->
 <br>
 
 {% endblock %}
