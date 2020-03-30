@@ -1,13 +1,9 @@
 {% extends "base.html" %}
-
+{% include 'navbar.html' %}
 {% block content %}
 
-<link rel="stylesheet" href="/static/css/styles.css"/>
-
-
-<br>
-<div>
-    <h2>Active Orders: </h2>
+<div id="volunteer-homepage" class="mx-auto" style="width: 400px;">
+    <h2>Active Orders:</h2>
     <br>
     <script>
         $.get('/trips.json', (res) => {
@@ -15,7 +11,7 @@
               console.log(res);
               const activeWishlist = $(`
               <div class="user-wishlists">
-                <table class="user-wishlists">
+                <table class="user-wishlists table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Wishlist #:</th>
@@ -35,10 +31,9 @@
             $('#ineed').append(activeWishlist);
           }); // end get
     </script>
+<br>
+
+<button type="button" action="/volunteer-all-wishlist" class="btn">View available wishlists</button>
+<br>
 </div>
-<br>
-
-<button type="button" action="/volunteer-all-wishlist" class="btn btn-primary">View available wishlists</button>
-<br>
-
 {% endblock %}
