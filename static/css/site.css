@@ -44,6 +44,7 @@ body {
 
 #user-box {
     height: 20rem;
+    padding: 3rem;
 }
 
 .btn, button {
