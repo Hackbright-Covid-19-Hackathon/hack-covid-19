@@ -241,17 +241,10 @@ def viewwishlists():
     return jsonify(wishlistList) 
 
 @app.route('/volunteer-wishlist/<int:trip_id>')
-def display_asker_single_wishlist():
+def display_asker_single_wishlist(trip_id):
     """Displays selected wishlist (single)"""
 
-    return render_template("single_wishlist.html")
-
-
-@app.route("/single_wishlist.json")
-def vol_view_wishlist():
-    """Display a single selected wishlist"""
-
-    trip = Trip.query.filter_by(trip_id).first()
+    trip = Trip.query.filter_by(trip_id=trip_id).first()
 
     session['wishlist_id'] = trip.trip_id
 
@@ -262,7 +255,14 @@ def vol_view_wishlist():
         'wishlist': trip.wishlist
         }
 
-    return jsonify(trip_info)
+    data = trip_info
+    return render_template("single_wishlist.html", data=data)
+
+
+# @app.route("/single_wishlist.json")
+# def vol_view_wishlist():
+#     """Display a single selected wishlist"""
+
 
 
 @app.route("/inprogress", methods=["POST"])
@@ -273,7 +273,7 @@ def vol_status_in_progress():
     
     current_status = 'In Progress'
     
-    trip = Trip.query.filter_by(trip_id).first()
+    trip = Trip.query.filter_by(trip_id=volunteer).first()
     
     trip.item_progress = current_status
     
@@ -292,7 +292,7 @@ def vol_status_completed():
     
     current_status = 'Completed!'
     
-    trip = Trip.query.filter_by(trip_id).first()
+    trip = Trip.query.filter_by(trip_id=volunteer).first()
     
     trip.item_progress = current_status
     

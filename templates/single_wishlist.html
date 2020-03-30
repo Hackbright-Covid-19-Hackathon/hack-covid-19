@@ -4,115 +4,52 @@
 
 <div id="wishlist-homepage" class="mx-auto" style="width: 400px;">
   <h2>Wishlist Items:</h2>
-  <script>
-      "use strict";
 
-      $.get('/single_wishlist.json', data, (res) => {
-          const singleWishlist =(`
-          <div class="single-wishlist">
-              ${res.wishlist_id}
-              <br>
-              ${res.wishlist}
-              <br>
-              ${res.wishlist_progress}
-          </div>`)
-      });
-
-      {singleWishlist}
-
-      $('#inprogressbtn').on('submit', (evt) => {
-          evt.preventDefault();
-          console.log('0');
-          }); // end submit
-
-          $(document).ready( () => {
-              console.log('0');
-              $.get('/inprogress', (res) => {
-                console.log(res);
-                const inprogressWishlist = (`
-                <div class="user-wishlists">
-                  <table class="user-wishlists table table-striped">
-                       <thead>
-                           <tr>
-                               <th scope="col">Wishlist #:</th>
-                               <th scope="col">Status:</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           <tr>
-                               <th scope="col">${res.wishlist}</th>
-                               <th scope="col">${res.status}</th>
-                           </tr>
-                       </tbody>
-                   </table>
-                 </div>
-                         `)
-                 {inprogressWishlist}
-              }); // end get
-            }); // end loading document
-
-      $('#completedbtn').on('submit', (evt) => {
-          evt.preventDefault();
-          console.log('0');
-          }); // end submit
-
-          $(document).ready( () => {
-              console.log('0');
-              $.get('/completed', (res) => {
-                  console.log(res);
-                  const completedWishllist = (`
-                  <div class="user-wishlists">
-                  <table class="user-wishlists table table-striped">
-                          <thead>
-                              <tr>
-                                  <th scope="col">Wishlist #:</th>
-                                  <th scope="col">Status:</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <th scope="col">${res.wishlist}</th>
-                                  <th scope="col">${res.status}</th>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-                          `)
-                  {completedWishllist}
-              }); // end get
-              }); // end loading document
-
-  </script>
-
-  <script>
-      $.get('/incomplete'), data, (res) => {
-              const activeWishlist = (`
-              <div class="user-wishlists">
-                <table class="user-wishlists table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Wishlist #:</th>
-                            <th scope="col">Status:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="col">${res.wishlist}</th>
-                            <th scope="col">${res.status}</th>
-                        </tr>
-                    </tbody>
-                </table>
-              </div>
-                      `)
-          }
-          {activeWishlist}
-  </script>
+  <div class="container container-fluid" id="single-wishlist">
+      Wishlist ID: <b>{{ data.wishlist_id }}</b>
+      <br>
+        Wishlist: {{ data.wishlist }}
+        <br>
+        <b id="status">Wishlist Status: {{ data.wishlist_progress }}</b>
+  </div>
 
   <br>
-  <button type="submit" id="inprogressbtn" class="btn">Volunteer for this wishlist</button>
+  <a class="btn btn-lg" id="inprogressbtn" role="button">Volunteer for this wishlist</a>
+  <!-- <button id="inprogressbtn" class="btn">Volunteer for this wishlist</button> -->
+  <br>
   <br>
   <b>Click this button once the wishlist items have been delivered: </b>
+  <br>
   <button type="submit" id="completedbtn" class="btn">Wishlist Completed!</button>
+  <br>
 </div>
+
+<script>
+
+    "use strict";
+    console.log('hello');
+    $('#inprogressbtn').on('click', (evt) => {
+        console.log('00');
+        evt.preventDefault();
+        console.log('0');
+        $.post('/inprogress', (res) => {
+            console.log(res);
+            $('#status').replaceWith(<b>${res}</b>);
+        });
+        }); // end submit
+
+    $('#completedbtn').on('click', (evt) => {
+        console.log('00');
+        evt.preventDefault();
+        console.log('0');
+        $.post('/completed', (res) => {
+            console.log(res);
+            $('#status').replaceWith(<b>${res}</b>);
+            console.log(res)
+        });
+        }); // end submit
+
+         
+  </script>
 
 {% endblock %}
