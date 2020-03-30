@@ -5,43 +5,40 @@
 <link rel="stylesheet" href="/static/css/styles.css"/>
 
 
-<h2>{{session.user_full_name}}'s Dashboard</h2>
-
 <br>
 <div>
     <h2>Active Orders: </h2>
     <br>
     <script>
-        $.get('/trips.json'), data, (res) => {
-            for (const trip of res) {
-                const activeOrders = (`
-                <div class="volunteer-wishlists">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Order #:</th>
-                                <th>Status:</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each trip}}
-                                <tr>
-                                    <td>${trip_id}</td>
-                                    <td>${trip_progress}</td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                </div>`);
-            }
-            
-            {activeOrders}
-        }
+        $.get('/trips.json', (res) => {
+            for (const trip of res.trips) {
+              console.log(res);
+              const activeWishlist = $(`
+              <div class="user-wishlists">
+                <table class="user-wishlists">
+                    <thead>
+                        <tr>
+                            <th scope="col">Wishlist #:</th>
+                            <th scope="col">Status:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col">${res.wishlist}</th>
+                            <th scope="col">${res.status}</th>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+                      `)
+            }; // end for
+            $('#ineed').append(activeWishlist);
+          }); // end get
     </script>
 </div>
 <br>
 
-<button type="button" action="/wishlists.html" class="btn btn-primary">View available wishlists</button>
+<button type="button" action="/volunteer-all-wishlist" class="btn btn-primary">View available wishlists</button>
 <br>
 
 {% endblock %}
