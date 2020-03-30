@@ -238,7 +238,7 @@ def viewwishlists():
             'wishlist': trip.wishlist
             # shows number of items on list before clicking on wishlist 
         })
-        return jsonify(wishlistList) 
+    return jsonify(wishlistList) 
 
 @app.route('/volunteer-wishlist/<int:trip_id>')
 def display_asker_single_wishlist():
