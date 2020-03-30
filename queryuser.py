@@ -31,27 +31,28 @@ def get_user_zipcode(user_id):
 
 
 def add_wishlist(new_wishlist, zipcode, asker):
-    """Send asker's wishlist to the database."""
+    pass
+#     """Send asker's wishlist to the database."""
 
-    this_user = User.query.filter_by(user_id=asker).first()
-    # print("before update", this_user)
-    this_user.wishlist = new_wishlist
+#     this_trip = Trip.query.filter_by(user_id=asker).first()
+#     print("before update", this_trip)
+#     this_trip.wishlist = new_wishlist
 
-    this_user.uzipcode = zipcode
+#     this_trip.uzipcode = zipcode
     
-    db.session.commit()
-    # print("After update", this_user)
-    return 'New wishlist created.'
+#     db.session.commit()
+#     print("After update", this_user)
+#     return 'New wishlist created.'
 
 
 def get_wishlist(user_id):
     """Query database for wishlist and status."""
 
-    this_user = User.query.filter_by(user_id=asker).first()
+    this_trip = Trip.query.filter_by(user_id=user_id).first()
 
-    wishlist = this_user.wishlist
+    wishlist = this_trip.wishlist
     # print(wishlist)
-    status = this_user.item_progress
+    status = this_trip.item_progress
     # print(status)
     return {'wishlist': wishlist, 'status': status}
     

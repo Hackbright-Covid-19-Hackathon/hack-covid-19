@@ -14,13 +14,6 @@ app.jinja_env.undefined = StrictUndefined
 app.secret_key= "ABC"
 
 
-# def check_logged_in():
-#     if session.get("user_id") == None:
-#         flash("You're not currently logged in!")
-#         return redirect("/login")
-
-
-
 @app.route("/")
 def homepage():
     """Show the homepage."""
@@ -111,12 +104,6 @@ def logout_user():
         return redirect("/")
 
 
-# @app.route("/user-homepage")
-# def show_user_homepage():
-#     """ Show user homepage."""
-
-#     return render_template("volunteer.html")
-
 @app.route("/asker-homepage")
 def show_asker_homepage():
     """Show homepage for asker."""
@@ -124,37 +111,21 @@ def show_asker_homepage():
     return render_template("asker.html")
 
 
-# @app.route("/volunteer-signup")
-# def show_volunteer_signup():
-#     """Show form for volunteer to enter zipcode"""
-#     # Page should have volunteer enter their zipcode
-#     return render_template("volunteer-signup.html")
-
-
-# # For these routes, not sure how to write since I don't know how
-# # Backend team plans to implement these?
-# @app.route("/volunteer-signup", methods=["POST"])
-# def show_volunteer_options():
-#     """Show order options for volunteer to sign up for."""
-#     # Page should have a checkbox list of orders volunteers can sign up for
-#     return render_template("")
-
-
 @app.route("/create", methods=["POST"])
 def create_wishlist():
     """Get asker's wishlist and zipcode to save in database."""
-
-    new_wishlist = request.args.get('wishlist')
-    zipcode = request.args.get('zipcode')
+    print('000')
+    new_wishlist = request.form.get('wishlist')
+    print(new_wishlist)
+    zipcode = request.form.get('zipcode')
     asker = session.get("user_id")
     status = "incomplete"
 
-    # if not Trip.query.filter_by(trip=username).all():
     new_trip = Trip(user_id=asker, 
                     wishlist=new_wishlist, 
                     trip_zipcode=zipcode,
                     item_progress=status)
-
+    print(new_trip)
     db.session.add(new_trip)
     db.session.commit()
     session["trip_id"] = new_trip.trip_id
@@ -165,23 +136,20 @@ def create_wishlist():
     return redirect("/asker-homepage")
     
 
-
 @app.route("/incomplete")
 def asker_view_wishlist():
     """Display wishlist."""
-
+    
     asker = session.get("user_id")
-
+    print(asker)
     incomplete_order = get_wishlist(asker)
-
+    print(incomplete_order)
     return jsonify(incomplete_order)
-
 
 
 @app.route("/inprogress")
 def status_in_progress():
     """Update wishlist status to in progress."""
-
 
     asker = session.get("user_id")
 
@@ -199,8 +167,6 @@ def status_completed():
     new_status = update_status(asker)
 
     return new_status
-
-    # return render_template("volunteer.html")
 
 
 @app.route("/volunteer-homepage")
@@ -236,6 +202,12 @@ def trip_info():
     return jsonify(tripList)
 
 
+@app.route("/volunteer-homepage")
+def show_volunteer_homepage():
+    """Show homepage for volunteer and displays active orders."""
+    return render_template("volunteer.html")
+
+
 @app.route('/volunteer-all-wishlist')
 def display_asker_wishlists():
     """Displays all avaliable wishlists"""
@@ -254,15 +226,17 @@ def viewwishlists():
             'wishlist_id': trip.trip_id,
             'wishlist_progress': trip.item_progress,
             'wishlist': trip.wishlist
-            # shows number of items on list before clicking on wishlist 
         })
+
         return jsonify(wishlistList)
+
     else:
         wishlistList.append({
             'wishlist_id': None,
             'Wishlist_progress': None,
             'wishlist': None
         })
+
     return jsonify(wishlistList)
 
 
@@ -282,7 +256,6 @@ def vol_view_wishlist():
     session['wishlist_id'] = trip.trip_id
 
     trip_info = {
-
         'wishlist_id': trip.trip_id,
         'wishlist_progress': trip.item_progress,
         'wishlist': trip.wishlist
@@ -313,6 +286,7 @@ def vol_status_in_progress():
 def vol_status_completed():
     """Update wishlist status to completed."""
 
+
     volunteer = session.get("wishlist_id")
 
     current_status = 'Completed!'
@@ -324,6 +298,7 @@ def vol_status_completed():
     new_status = vol_update_status(volunteer)
 
     db.session.commit()
+    
     return new_status
 
 
