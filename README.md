@@ -91,7 +91,7 @@ The following features are planned for implementation:
 - [**Yichen Dai**](https://www.linkedin.com/in/daiyichen/)
 Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
 
-- [**Jessica Chuynh**](https://www.linkedin.com/in/jessicachauhuynh/)
+- [**Jessica Huynh**](https://www.linkedin.com/in/jessicachauhuynh/)
 Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript.
 
 - [**Lauren Maghran**](https://www.linkedin.com/in/lauren-maghran/) currently works in the environmental field, but is changing careers to software engineering. Lauren is a curious person, love learning, and appreciate clever solutions!
