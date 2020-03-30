@@ -20,15 +20,68 @@
 
     {singleWishlist}
 
-    $('#btn').on('click', (evt) => {
+
+    $('#inprogressbtn').on('click', (evt) => {
         evt.preventDefault();
-        $POST
+
+        $.post('/inprogress'), data, (res) => {
+            const inprogressWishlist = (`
+            <div class="user-wishlists">
+              <table class="user-wishlists">
+                  <thead>
+                      <tr>
+                          <th scope="col">Wishlist #:</th>
+                          <th scope="col">Status:</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="col">${res.wishlist}</th>
+                          <th scope="col">${res.status}</th>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+                    `);
+        }
+
+        $('#inprogressbtn').toggle();
+
+        {inprogressWishlist}
+
+    $('#completedbtn').on('click', (evt) => {
+        evt.preventDefault();
+
+        $.post('/completed'), data, (res) => {
+            const completedWishllist = (`
+            <div class="user-wishlists">
+                <table class="user-wishlists">
+                    <thead>
+                        <tr>
+                            <th scope="col">Wishlist #:</th>
+                            <th scope="col">Status:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="col">${res.wishlist}</th>
+                            <th scope="col">${res.status}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                    `);
+        }
+
+        $('#completedbtn').toggle();
+
+        {completedWishllist}
     });
 
 </script>
 
 <br>
-<button type="button" action="/inprogress" class="btn btn-primary">Choose this wishlist</button>
+<button type="button" action="/inprogress" id='inprogressbtn' class="btn btn-primary">Choose this wishlist</button>
 <br>
 <b>Click this button once the wishlist items have been delivered: </b>
-<button type="button" action="/completed" class="btn btn-primary">Completed</button>
+<button type="button" action="/completed" id='completedbtn' class="btn btn-primary">Completed</button>

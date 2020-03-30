@@ -13,8 +13,9 @@
     <br>
     <script>
         $.get('/trips.json'), data, (res) => {
-            for (const trip of trips) {(`
-                <div>
+            for (const trip of res) {
+                const activeOrders = (`
+                <div class="volunteer-wishlists">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -33,6 +34,8 @@
                     </table>
                 </div>`);
             }
+            
+            {activeOrders}
         }
     </script>
 </div>
