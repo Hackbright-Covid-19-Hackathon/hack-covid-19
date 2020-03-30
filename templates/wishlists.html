@@ -1,5 +1,6 @@
-{% extends "base.html" %}
-
+{% extends 'base.html' %}
+<!-- Add Navbar from navbar.html file --> 
+{% include 'navbar.html' %}
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/styles.css"/>
@@ -18,3 +19,5 @@
         }
     </script>
 </div>
+
+{% endblock %}
