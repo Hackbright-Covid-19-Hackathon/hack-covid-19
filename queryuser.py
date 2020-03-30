@@ -34,20 +34,20 @@ def add_wishlist(new_wishlist, zipcode, asker):
     """Send asker's wishlist to the database."""
 
     this_user = User.query.filter_by(user_id=asker).first()
-    # print("before update", this_user)
+    print("before update", this_user)
     this_user.wishlist = new_wishlist
 
     this_user.uzipcode = zipcode
     
     db.session.commit()
-    # print("After update", this_user)
+    print("After update", this_user)
     return 'New wishlist created.'
 
 
 def get_wishlist(user_id):
     """Query database for wishlist and status."""
 
-    this_user = User.query.filter_by(user_id=asker).first()
+    this_user = User.query.filter_by(user_id=user_id).first()
 
     wishlist = this_user.wishlist
     # print(wishlist)

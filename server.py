@@ -102,42 +102,11 @@ def logout_user():
         return redirect("/")
 
 
-# @app.route("/user-homepage")
-# def show_user_homepage():
-#     """ Show user homepage."""
-
-#     return render_template("volunteer.html")
-
 @app.route("/asker-homepage")
 def show_asker_homepage():
     """Show homepage for asker."""
     
     return render_template("asker.html")
-
-
-# @app.route("/volunteer-homepage")
-# def show_volunteer_homepage():
-#     """Show homepage for volunteer."""
-# <<<<<<< HEAD
-#     # Page should show active orders they signed up for
-#     # Page should link to form for volunteer to enter their zipcode
-#     return render_template("volunteer-homepage.html")
-
-
-# @app.route("/volunteer-signup")
-# def show_volunteer_signup():
-#     """Show form for volunteer to enter zipcode"""
-#     # Page should have volunteer enter their zipcode
-#     return render_template("volunteer-signup.html")
-
-
-# # For these routes, not sure how to write since I don't know how
-# # Backend team plans to implement these?
-# @app.route("/volunteer-signup", methods=["POST"])
-# def show_volunteer_options():
-#     """Show order options for volunteer to sign up for."""
-#     # Page should have a checkbox list of orders volunteers can sign up for
-#     return render_template("")
 
 
 @app.route("/create", methods=["POST"])
@@ -166,13 +135,13 @@ def create_wishlist():
     
 
 @app.route("/incomplete")
-def view_wishlist():
+def asker_view_wishlist():
     """Display wishlist."""
-
+    
     asker = session.get("user_id")
-
+    print(asker)
     incomplete_order = get_wishlist(asker)
-
+    print(incomplete_order)
     return jsonify(incomplete_order)
 
 
@@ -229,27 +198,9 @@ def show_volunteer_homepage():
     return render_template("volunteer.html")
 
 
-@app.route('/trips.json')
-def trip_info():
-    trip = Trip.query.filter_by(session.user_id).first()
-    tripList = []
-    if trip:
-        tripList.append({
-            'trip_id': trip.trip_id,
-            'trip_progress': trip.item_progress
-        })
-        return jsonify(tripList)
-    else:
-        tripList.append({
-            'trip_id': None,
-            'trip_progress': None
-        })
-    return jsonify(tripList)
-
-
 @app.route('/volunteer-all-wishlist')
-def display_asker_wishlist():
-    "Displays all avaliable wishlists"
+def display_asker_wishlists():
+    """Displays all avaliable wishlists"""
     return render_template("wishlists.html")
 
 
@@ -282,7 +233,7 @@ def display_asker_wishlist():
 
 
 @app.route("/single_wishlist.json")
-def view_wishlist():
+def vol_view_wishlist():
     """ """
     trip = Trip.query.filter_by(trip_id).first()
     session['wishlist_id'] = trip.trip_id

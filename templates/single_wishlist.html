@@ -22,6 +22,30 @@
 
 </script>
 
+<script>
+    $.get('/incomplete'), data, (res) => {
+            const activeWishlist = (`
+            <div class="user-wishlists">
+              <table class="user-wishlists">
+                  <thead>
+                      <tr>
+                          <th scope="col">Wishlist #:</th>
+                          <th scope="col">Status:</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <th scope="col">${res.wishlist}</th>
+                          <th scope="col">${res.status}</th>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+                    `)
+        }
+        {activeWishlist}
+</script>
+
 <br>
 <button type="button" action="/inprogress" class="btn btn-primary">Choose this wishlist</button>
 <br>
