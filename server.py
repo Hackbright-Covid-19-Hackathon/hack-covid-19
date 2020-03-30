@@ -43,15 +43,11 @@ def login_page():
     print(f'\n\nemail: {email}')
     password = request.form.get("password")
     print(f'\n\npassword: {password}')
-    
-    # import ipdb; ipdb.set_trace()
 
     user = User.query.filter_by(email=email).first()
-    # db.session.query((User.user_full_name),\ 
-    #                         .filter(User.email == email)).first
-    #                          #
+
     if user:
-        if user.check_password(password): #updated variable name from password to password_hash
+        if user.check_password(password): 
             session["user_id"] = user.user_id
             flash("Successfully logged in!")
             return redirect("/user")
@@ -294,35 +290,40 @@ def vol_view_wishlist():
 @app.route("/inprogress", methods=["POST"])
 def vol_status_in_progress():
     """Update wishlist status to in progress."""
-
+    
     volunteer = session.get("wishlist_id")
-
+    
     current_status = 'In Progress'
-
+    
     trip = Trip.query.filter_by(trip_id).first()
-
+    
     trip.item_progress = current_status
-
+    
     new_status = vol_update_status(volunteer)
 
     db.session.commit()
+    
     return new_status
 
 
 @app.route("/completed", methods=["POST"])
 def vol_status_completed():
     """Update wishlist status to completed."""
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> a17dac4e157d8191202987353cd2c8e9bd563941
     volunteer = session.get("wishlist_id")
-
+    
     current_status = 'Completed!'
-
+    
     trip = Trip.query.filter_by(trip_id).first()
-
+    
     trip.item_progress = current_status
-
+    
     new_status = vol_update_status(volunteer)
-
+    
     db.session.commit()
     return new_status
 
