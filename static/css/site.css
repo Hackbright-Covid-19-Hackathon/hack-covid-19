@@ -32,7 +32,9 @@ body {
     color: #33AD93;   
 }
 
-#homepage-box, #register-box, #user-box {
+#homepage-box, #register-box, #user-box, 
+#volunteer-homepage, #wishlist-homepage,
+#asker-homepage {
     color: #026670;
     font-weight: bold;
     font-size: 20px;

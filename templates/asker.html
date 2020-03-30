@@ -5,10 +5,8 @@
 
 {% block content %}
 
-{# {% if session.logged_in %}
-    <h2>{{session.user_full_name}}'s Wishlist</h2> #}
-
 <body>
+  <div id="asker-homepage" class="mx-auto text-justify" style="width: 700px;">
   <h2>Add to Wishlist</h2>
   <div id="add_to_wishlist">
     <form action="/create" method="post">
@@ -18,9 +16,10 @@
                       cols="60"
                       maxlength='1000'
                       minlegth='5'
-                      placeholder="Add to wishlist.."
                       ></textarea>
-      <input type="text" id="zipcode" name='zipcode' maxlength="5"></input>
+      <label for="inputZip">Zipcode</label>
+      <input name="zipcode" type="text" class="form-control" id="inputZip" placeholder="Zip Code*" name='zipcode' maxlength="5" style="width: 100px;"></input>
+      <br>
       <button type="submit" id="create-wishlist">Create Wishlist</button>
     </form>
   </div>
@@ -71,7 +70,5 @@
   <!-- edit wishlist option -->
 
 </body>
-
-{# {% endif %} #}
 
 {% endblock %}
