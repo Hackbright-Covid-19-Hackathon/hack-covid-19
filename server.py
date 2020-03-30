@@ -221,25 +221,24 @@ def display_asker_wishlists():
 @app.route('/wishlistInfo.json')
 def viewwishlists():
     """ """
-    trip = Trip.query.filter_by(session.uzipcode, item_progress='incomplete').all()
+    user_id = session.get('user_id')
+    print(user_id)
+    zipcode = db.session.query(User.uzipcode).filter(User.user_id==user_id).first()
+    print(zipcode)
+    trips = Trip.query.filter_by(trip_zipcode=zipcode).all()
+    print(trips)
 
     wishlistList = []
-    if trip:
+
+    for trip in trips:
+        print(trip.trip_id)
         wishlistList.append({
             'wishlist_id': trip.trip_id,
             'wishlist_progress': trip.item_progress,
             'wishlist': trip.wishlist
             # shows number of items on list before clicking on wishlist 
         })
-        return jsonify(wishlistList)
-    else:
-        wishlistList.append({
-            'wishlist_id': None,
-            'Wishlist_progress': None,
-            'wishlist': None
-        })
-    return jsonify(wishlistList)
-
+        return jsonify(wishlistList) 
 
 @app.route('/volunteer-wishlist/<int:trip_id>')
 def display_asker_single_wishlist():

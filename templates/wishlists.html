@@ -20,13 +20,17 @@
             console.log(wishlist_id)
             console.log(wishlist_progress)
 
-            $('all-wishlists').append(`
+            let wishlists = $(`
             <div class="list-group">
-                <a href="/wishlists/{wishlist_id}" class="list-group-item list-group-item-action">${wishlist_id}(${wishlist_progress})</a>
-        `);
+                <a href="/wishlists/{wishlist_id}" >${wishlist_id}(${wishlist_progress})</a>
+            </div>
+            `);
+
+            $('#all-wishlists').append(wishlists)
+            
     };
     });
-    
+
 </script>
 
 
