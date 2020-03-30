@@ -35,7 +35,7 @@ def login_page():
     email = request.form.get("email")
     print(f'\n\nemail: {email}')
     password = request.form.get("password")
-    print(f'\n\npassword: {password}')
+    # print(f'\n\npassword: {password}')
 
     user = User.query.filter_by(email=email).first()
 
@@ -301,7 +301,7 @@ def about():
 
 if __name__ == "__main__": 
 
-    app.debug = False #pragma: no cover
+    app.debug = True #pragma: no cover
     connect_to_db(app) #pragma: no cover
     DebugToolbarExtension(app) #pragma: no cover
     app.run(host="0.0.0.0") #pragma: no cover

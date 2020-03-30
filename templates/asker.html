@@ -38,14 +38,14 @@
         console.log('0');
         $.get('/incomplete', (res) => {
           for (const trip of res.trips) {
-            // console.log(trip);
-            const order = $(`
+            console.log(trip);
+            let order = $(`
 
             <div class="user-wishlists">
               <table class="user-wishlists">
                   <thead>
                       <tr>
-                          <th scope="col">Wishlist #:</th>
+                          <th scope="col">Wishlist #: ${trip.wishlist_id}</th>
                           <th scope="col">Status:</th>
                       </tr>
                   </thead>
@@ -57,10 +57,11 @@
                   </tbody>
               </table>
             </div>
-                    `)
-            console.log(order)
+                    `);
+            // console.log(order);
+            $('#ineed').append(order);
           }; // end for
-          $('#ineed').append(order);
+          
         }); // end get
       }); // end loading document     
 
