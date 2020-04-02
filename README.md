@@ -3,7 +3,7 @@
  
 The COVID_19 pandemic has severely impacted the most vulnerable members of our community, and it has strained those working on the frontlines of the response. Our team wanted to provide our community with a tool where people in need can ask for help in getting grocery items, and volunteers can log in and provide the help. 
 
-A user in need could range from a person who is volnerable and does not wish to leave the house, a healthcare worker who’s too busy in the frontlines to get groceries for their family, or a parent who doesn't want to leave their kids alone at home.
+A user in need could range from a person who is vulnerable and does not wish to leave the house, a healthcare worker who’s too busy in the frontlines to get groceries for their family, or a parent who doesn't want to leave their kids alone at home.
 
 ### What it does
 
