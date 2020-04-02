@@ -7,7 +7,7 @@ A user in need could range from a person whose health makes them vulnerable enou
 
 ### What it does
 
-Through BestNeighbor, a person in need of help can provide a wishlist of items they need from a local store along with their zip-code. Volunteers can then log in and see wishlists available within a selected zip-code. These two users will be able to contact each other and coordinate payment and delivery.
+Through BestNeighbor, a person in need of help can provide a wishlist of items they need from a local store along with their zip-code. Volunteers can log in and see wishlists available within a selected zip-code. The volunteer can shop for a wishlist that they selelct. The volunteer and requester will be able to contact each other and coordinate payment and delivery.
 
 ### How we built it
 
@@ -54,17 +54,29 @@ $ python3 server.py
 ```
 ## Features
 
+### Register
+<img src="static/img/Register-page.PNG" width="700">
+<br>
+
+### Login
+<img src="static/img/Log-in-page.PNG" width="700">
+<br>
+
 ### Homepage
+ <!-- ![](https://drive.google.com/file/d/1uldk8o5CfXHC2rNUrYLB-rJplla2PA8S/view?usp=sharing)
+ ![](https://drive.google.com/open?id=1GLBWGzm2pZLkd7mHac8kLLpw4ew4Sfgv) -->
+<img src="static/img/Options-page.PNG" width="700">
+<br>
 
- ![](https://drive.google.com/file/d/1uldk8o5CfXHC2rNUrYLB-rJplla2PA8S/view?usp=sharing)
- ![](https://drive.google.com/open?id=1GLBWGzm2pZLkd7mHac8kLLpw4ew4Sfgv)
-### Volunteer page
-
-[insert volunteer page image]
+### Volunteer pages
+<img src="static/img/View-All-Wishlists-page.PNG" width="700">
+<br>
+<img src="static/img/View-Single-Wishlist-page.PNG" width="700">
+<br>
 
 ### Asker page
-
-[insert asker page image]
+<img src="static/img/Make-Wishlist-page.PNG" width="700">
+<br>
 
 
 ## What’s next
