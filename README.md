@@ -65,7 +65,7 @@ Once a user has an account, they can enter the app by logging-in.
 <br>
 
 ### Homepage
-After log-in, users will be given a choice for how they want to participate with BestNeighbor. They can ask for help with their shopping, volunteer to ship, or sponsor a wishlist.
+After log-in, users will be given a choice for how they want to participate with BestNeighbor. They can ask for help with their shopping, volunteer to shop, or sponsor a wishlist.
  <!-- ![](https://drive.google.com/file/d/1uldk8o5CfXHC2rNUrYLB-rJplla2PA8S/view?usp=sharing)
  ![](https://drive.google.com/open?id=1GLBWGzm2pZLkd7mHac8kLLpw4ew4Sfgv) -->
 <img src="static/img/Options-page.png" width="700">
