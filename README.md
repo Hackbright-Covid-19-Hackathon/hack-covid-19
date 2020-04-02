@@ -55,26 +55,32 @@ $ python3 server.py
 ## Features
 
 ### Register
+Users get started with BestNeighbor by creating an account.
 <img src="static/img/Register-page.png" width="700">
 <br>
 
 ### Login
+Once a user has an account, they can enter the app by logging-in.
 <img src="static/img/Log-in-page.png" width="700">
 <br>
 
 ### Homepage
+After log-in, users will be given a choice for how they want to participate with BestNeighbor. They can ask for help with their shopping, volunteer to ship, or sponsor a wishlist.
  <!-- ![](https://drive.google.com/file/d/1uldk8o5CfXHC2rNUrYLB-rJplla2PA8S/view?usp=sharing)
  ![](https://drive.google.com/open?id=1GLBWGzm2pZLkd7mHac8kLLpw4ew4Sfgv) -->
-<img src="static/img/Options-page.PNG" width="700">
+<img src="static/img/Options-page.png" width="700">
 <br>
 
 ### Volunteer pages
+Volunteers will see all the shopping wishlists that have been created in their zipcode. A user can click on individual wishlists to view more information about them.
 <img src="static/img/View-All-Wishlists-page.png" width="700">
 <br>
+When a volunteer clicks on a wishlist, the volunteer will receive information about the wishlist items and be given the options to volunteer for the wishlist or ehck it in once the shopping is complete.
 <img src="static/img/View-Single-Wishlist-page.png" width="700">
 <br>
 
 ### Asker page
+Community members that need help with shopping can create a shopping wishlist. They will submit the wishlist and their zipcode to be matched with nearby volunteers.
 <img src="static/img/Make-Wishlist-page.png" width="700">
 <br>
 
@@ -84,6 +90,7 @@ The following features are planned for implementation:
 - Secure messaging within the webapp to keep user’s personal phone number and email private
 - Ratings system for volunteers
 - User verification
+- Built out 'sponsor features'
 
 
 ## About the Developers:
