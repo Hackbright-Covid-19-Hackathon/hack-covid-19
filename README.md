@@ -11,9 +11,9 @@ Through BestNeighbor, a person in need of help can provide a wishlist of items t
 
 ### How we built it
 
-In 48-hours, our team brainstormed the project idea, built, integrated and tested the webapp using the following software stack:
-- Backend: Postgresql, Flask, SqlAlchemy
-- Frontend: HTML, CSS, Bootstrap
+In 48-hours, our team brainstormed the project idea, built, integrated, and tested the web-app using the following software stack:
+- Backend: Python, Postgresql, Flask, SqlAlchemy
+- Frontend: HTML, CSS, Bootstrap, Ajax
 
 ## Installation
 
