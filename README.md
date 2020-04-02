@@ -55,11 +55,11 @@ $ python3 server.py
 ## Features
 
 ### Register
-<img src="static/img/Register-page.PNG" width="700">
+<img src="static/img/Register-page.png" width="700">
 <br>
 
 ### Login
-<img src="static/img/Log-in-page.PNG" width="700">
+<img src="static/img/Log-in-page.png" width="700">
 <br>
 
 ### Homepage
@@ -69,13 +69,13 @@ $ python3 server.py
 <br>
 
 ### Volunteer pages
-<img src="static/img/View-All-Wishlists-page.PNG" width="700">
+<img src="static/img/View-All-Wishlists-page.png" width="700">
 <br>
-<img src="static/img/View-Single-Wishlist-page.PNG" width="700">
+<img src="static/img/View-Single-Wishlist-page.png" width="700">
 <br>
 
 ### Asker page
-<img src="static/img/Make-Wishlist-page.PNG" width="700">
+<img src="static/img/Make-Wishlist-page.png" width="700">
 <br>
 
 
