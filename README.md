@@ -75,7 +75,8 @@ After log-in, users will be given a choice for how they want to participate with
 Volunteers will see all the shopping wishlists that have been created in their zipcode. A user can click on individual wishlists to view more information about them.
 <img src="static/img/View-All-Wishlists-page.png" width="700">
 <br>
-When a volunteer clicks on a wishlist, the volunteer will receive information about the wishlist items and be given the options to volunteer for the wishlist or ehck it in once the shopping is complete.
+<br>
+When a volunteer clicks on a wishlist, the volunteer will receive information about the wishlist items and be given the options to volunteer for the wishlist or check it in once the shopping is complete.
 <img src="static/img/View-Single-Wishlist-page.png" width="700">
 <br>
 
