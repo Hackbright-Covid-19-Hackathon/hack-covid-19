@@ -259,12 +259,6 @@ def display_asker_single_wishlist(trip_id):
     return render_template("single_wishlist.html", data=data)
 
 
-# @app.route("/single_wishlist.json")
-# def vol_view_wishlist():
-#     """Display a single selected wishlist"""
-
-
-
 @app.route("/inprogress", methods=["POST"])
 def vol_status_in_progress():
     """Update wishlist status to in progress."""
