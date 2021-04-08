@@ -109,7 +109,7 @@ The following features are planned for implementation:
 - [**Bahar Asefi**](https://www.linkedin.com/in/bahar-asefi-19154218a/) is an entrepreneur turned developer interested in backend and full stack engineering. 
 
 - [**Yichen Dai**](https://www.linkedin.com/in/daiyichen/)
-Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
+is engineering and community ops at Elementl on [Dagster](https://dagster.io/), a data orchestrator open-source project for machine learning, analytics, and ETL. Previously a pioneer full-time world language teacher, with extensive experience in project planning, management and interpersonal communication. She also likes to be creative and solve problems, and she's deeply passionate about learning new technologies. Yichen has been learning Python and Javascript for the last year, and is excited to continue her growth as an software engineer and contribute to solve real life problem via technologies. 
 
 - [**Jessica Huynh**](https://www.linkedin.com/in/jessicachauhuynh/)
 Found a new interest in Full-Stack Web Development and currently learning the basics: HTML, CSS, Git, GitHub, Python and JavaScript.
