@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 #db createdb volunteerdb
 # python3 -i model.py
- ## in python3 interactive db.createall()
+ ## in python3 interactive db.create_all()
 
 
 ##############################################################################
@@ -18,7 +18,7 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+    user_id = db.Column(db.Integer, autoincrement=True, primary_key=True,
                         nullable=False)
     user_full_name = db.Column(db.String(64), nullable=True)
     email = db.Column(db.String(64), nullable=True)
@@ -27,7 +27,7 @@ class User(db.Model):
     is_asker = db.Column(db.Boolean(), nullable=True)
     is_vol = db.Column(db.Boolean(), nullable=True)
     trust_score = db.Column(db.String(15), nullable=True)
-    
+
     # relationships
     # relationship in 'Trip' class
     # relationship in 'Relational' class
@@ -51,15 +51,15 @@ class Relational(db.Model):
 
     __tablename__ = "relations"
 
-    relation_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+    relation_id = db.Column(db.Integer, autoincrement=True, primary_key=True,
                         nullable = False)
     r_asker_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
     r_vol_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable= True)
     r_trip_id = db.Column(db.Integer, db.ForeignKey('trips.trip_id'), nullable= True)
 
     #relationships with the user table
-    r_asker_id_rel = db.relationship('User', 
-                                    foreign_keys="[Relational.r_asker_id]", 
+    r_asker_id_rel = db.relationship('User',
+                                    foreign_keys="[Relational.r_asker_id]",
                                     backref='relational_asker')
 
     r_vol_id_rel = db.relationship('User',
@@ -71,7 +71,7 @@ class Trip(db.Model):
 
     __tablename__ = "trips"
 
-    trip_id= db.Column(db.Integer, autoincrement=True, primary_key=True, 
+    trip_id= db.Column(db.Integer, autoincrement=True, primary_key=True,
                         nullable = False)
     trip_zipcode= db.Column(db.String(15))
     user_id= db.Column(db.Integer, db.ForeignKey('users.user_id'), index=True)
@@ -80,7 +80,7 @@ class Trip(db.Model):
 
     # Define relationship to user
     user = db.relationship("Relational",
-                           backref=db.backref("relations", 
+                           backref=db.backref("relations",
                             order_by=user_id))
 
 
@@ -89,7 +89,7 @@ class Wishlist(db.Model):
 
     __tablename__ = "wishlist"
 
-    wish_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True, 
+    wish_item_id = db.Column(db.Integer, autoincrement=True, primary_key=True,
                                 nullable = False)
     # wish_item_desc= db.Column(db.)
 

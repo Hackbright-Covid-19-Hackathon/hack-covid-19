@@ -5,9 +5,9 @@ def get_user_email(user_id):
 
     Examples:
         >>> get_user_email('1')
-        msdaiyichen@gmail.com
+        'Ada@gmail.com'
         >>> get_user_email('2')
-        jessica@gmail.com
+        'Grace@gmail.com'
     """
     # Get user email via its id
     user = User.query.filter_by(user_id=user_id).first()
@@ -20,9 +20,9 @@ def get_user_zipcode(user_id):
 
     Examples:
         >>> get_user_zipcode('1')
-        'ca 94014'
+        '94041'
         >>> get_user_zipcode('2')
-        'ca 94134'
+        '94102'
     """
     # Get user email via its id
     user = User.query.filter_by(user_id=user_id).first()
@@ -31,18 +31,18 @@ def get_user_zipcode(user_id):
 
 
 def add_wishlist(new_wishlist, zipcode, asker):
-    pass
-#     """Send asker's wishlist to the database."""
+    # pass
+    """Send asker's wishlist to the database."""
 
-#     this_trip = Trip.query.filter_by(user_id=asker).first()
-#     print("before update", this_trip)
-#     this_trip.wishlist = new_wishlist
+    this_trip = Trip.query.filter_by(user_id=asker).first()
+    print("before update", this_trip)
+    this_trip.wishlist = new_wishlist
 
-#     this_trip.uzipcode = zipcode
+    this_trip.uzipcode = zipcode
     
-#     db.session.commit()
-#     print("After update", this_user)
-#     return 'New wishlist created.'
+    db.session.commit()
+    print("After update", this_user)
+    return 'New wishlist created.'
 
 
 def get_wishlists(user_id):
@@ -64,7 +64,12 @@ def get_wishlists(user_id):
 
 
 def get_wishlist(user_id):
-    """Query database for wishlist and status."""
+    """Query database for wishlist and status.
+    
+    Examples:
+        >>> get_wishlist('1')
+        {'wishlist': '"fresh lettuce, olives, cucumbers, bread"', 'status': 'Incomplete'}
+    """
 
     this_trip = Trip.query.filter_by(user_id=user_id).first()
 
@@ -93,6 +98,6 @@ if __name__ == "__main__":
 
   connect_to_db(app)
   print("Connected to DB.")
-  
+
   if doctest.testmod().failed == 0:
-      print("\n*** ALL TESTS PASSED. YOU CAUGHT ALL THE STRAY PARENS!\n")
+      print("\n*** ALL TESTS PASSED. YOU SHINE!\n")
